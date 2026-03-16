@@ -1,0 +1,554 @@
+{
+  "name": "S2S Engine — Workflow A: Syllabus Ingestion",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "upload-syllabus",
+        "responseMode": "lastNode",
+        "options": {
+          "rawBody": false
+        }
+      },
+      "id": "node-webhook-trigger",
+      "name": "Webhook: Receive Upload",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 400],
+      "webhookId": "syllabus-upload-webhook",
+      "notes": "Entry point. Accepts multipart/form-data POST with binary PDF file + student metadata. Test via curl or Postman."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Validate required fields from webhook payload\nconst body = $input.first().json;\nconst binary = $input.first().binary;\n\nif (!binary || !binary.data) {\n  throw new Error('No PDF file found in request. Ensure field name is \"data\".');\n}\n\nif (!body.student_email) {\n  throw new Error('student_email is required in form fields.');\n}\n\nif (!body.course_name) {\n  throw new Error('course_name is required.');\n}\n\nif (!body.semester_start) {\n  throw new Error('semester_start (YYYY-MM-DD) is required.');\n}\n\n// Generate unique plan ID\nconst planId = 'plan_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);\n\nreturn [{\n  json: {\n    plan_id: planId,\n    student_email: body.student_email,\n    student_name: body.student_name || 'Student',\n    course_name: body.course_name,\n    semester_start: body.semester_start,\n    upload_timestamp: new Date().toISOString()\n  },\n  binary: binary\n}];"
+      },
+      "id": "node-validate-input",
+      "name": "Code: Validate & Prep",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [420, 400],
+      "notes": "Validates required fields, generates unique plan_id. Throws descriptive errors on missing data."
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "name": "={{ $json.plan_id }}_{{ $json.course_name.replace(/\\s+/g, '_') }}.pdf",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "REPLACE_WITH_YOUR_DRIVE_FOLDER_ID",
+          "mode": "id"
+        },
+        "inputDataFieldName": "data",
+        "options": {
+          "simplifyOutput": true
+        }
+      },
+      "id": "node-drive-upload",
+      "name": "Google Drive: Store PDF",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [640, 400],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "REPLACE_WITH_CREDENTIAL_ID",
+          "name": "Google Drive OAuth2"
+        }
+      },
+      "notes": "Stores PDF in Google Drive for audit trail. Replace REPLACE_WITH_YOUR_DRIVE_FOLDER_ID with your actual folder ID."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Merge Drive upload result back with student metadata\nconst prevItems = $('Code: Validate & Prep').all();\nconst driveItem = $input.first();\n\nreturn [{\n  json: {\n    ...prevItems[0].json,\n    drive_file_id: driveItem.json.id,\n    drive_web_link: driveItem.json.webViewLink\n  },\n  binary: prevItems[0].binary\n}];"
+      },
+      "id": "node-merge-drive",
+      "name": "Code: Merge Drive Meta",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [860, 400],
+      "notes": "Re-merges student metadata with Google Drive file info so subsequent nodes have full context."
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "data",
+        "options": {}
+      },
+      "id": "node-extract-pdf",
+      "name": "Extract From File: PDF Text",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [1080, 400],
+      "notes": "Extracts raw text from the PDF binary. Output field: $json.text — this is passed to the AI for parsing."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Merge PDF text with student metadata\nconst meta = $('Code: Merge Drive Meta').first().json;\nconst extracted = $input.first().json;\n\nconst syllabusText = extracted.text || '';\n\nif (!syllabusText || syllabusText.trim().length < 100) {\n  throw new Error('PDF text extraction failed or returned too little content. Ensure the PDF is not scanned/image-only.');\n}\n\n// Truncate to ~12000 chars to stay within token limits (adjust as needed)\nconst truncatedText = syllabusText.slice(0, 12000);\n\nreturn [{\n  json: {\n    ...meta,\n    syllabus_text: truncatedText,\n    full_char_count: syllabusText.length\n  }\n}];"
+      },
+      "id": "node-merge-text",
+      "name": "Code: Merge PDF Text",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1300, 400],
+      "notes": "Merges extracted PDF text with student meta. Truncates to 12k chars to avoid token overflow. Throws error if text is too short."
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are an expert academic curriculum analyst. Your job is to parse university syllabus text and extract structured course information. You ALWAYS respond with valid JSON only — no markdown, no explanations, just the raw JSON object."
+            },
+            {
+              "role": "user",
+              "content": "=Parse the following syllabus text and return ONLY this exact JSON structure (no extra text, no markdown code blocks):\n\n{\n  \"course_name\": \"string\",\n  \"course_code\": \"string or null\",\n  \"instructor\": \"string or null\",\n  \"total_weeks\": 15,\n  \"topics\": [\n    {\n      \"id\": \"t1\",\n      \"name\": \"string\",\n      \"subtopics\": [\"string\"],\n      \"difficulty\": \"easy|medium|hard\",\n      \"est_hours\": number,\n      \"week_suggested\": number,\n      \"is_exam\": false\n    }\n  ],\n  \"exams\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"quiz|midterm|final|assignment\",\n      \"approx_week\": number\n    }\n  ],\n  \"key_textbooks\": [\"string\"],\n  \"summary\": \"One sentence description of the course\"\n}\n\nRules:\n- Extract ALL distinct topics (typically 8–20 topics per course)\n- difficulty: easy=introductory/foundational, medium=requires practice, hard=complex/project-based\n- est_hours: realistic study hours per topic (3–20 hours)\n- week_suggested: which week of 15 this topic likely fits\n- If syllabus has explicit schedule, use it; otherwise distribute logically\n- Return valid JSON only, no additional text\n\nSYLLABUS TEXT:\n{{ $json.syllabus_text }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.2,
+          "maxTokens": 3000,
+          "responseFormat": "json_object"
+        }
+      },
+      "id": "node-ai-parse-topics",
+      "name": "OpenAI: Extract Topics",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.4,
+      "position": [1520, 400],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE_WITH_CREDENTIAL_ID",
+          "name": "OpenAI API"
+        }
+      },
+      "notes": "First AI call. Extracts structured topics, subtopics, difficulty, and exam dates from raw syllabus text."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse AI response and merge everything\nconst meta = $('Code: Merge PDF Text').first().json;\nconst aiResponse = $input.first().json;\n\nlet parsedSyllabus;\ntry {\n  // OpenAI with json_object format returns content as string\n  const content = aiResponse.message?.content || aiResponse.choices?.[0]?.message?.content || aiResponse.content || '';\n  parsedSyllabus = typeof content === 'string' ? JSON.parse(content) : content;\n} catch (e) {\n  throw new Error('Failed to parse AI topic extraction response as JSON: ' + e.message);\n}\n\nif (!parsedSyllabus.topics || parsedSyllabus.topics.length === 0) {\n  throw new Error('AI returned no topics. Check PDF text quality.');\n}\n\nreturn [{\n  json: {\n    ...meta,\n    parsed_syllabus: parsedSyllabus,\n    topics_count: parsedSyllabus.topics.length,\n    exams_count: (parsedSyllabus.exams || []).length\n  }\n}];"
+      },
+      "id": "node-parse-topics-response",
+      "name": "Code: Parse Topics Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1740, 400],
+      "notes": "Parses the AI JSON response. Validates at least some topics were extracted. Merges with student metadata."
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are StudyBuddy, a motivational AI academic coach. You are encouraging, structured, practical, and occasionally use relevant emojis. You create realistic, achievable study schedules that won't burn students out. You ALWAYS respond with valid JSON only — no markdown, no explanations."
+            },
+            {
+              "role": "user",
+              "content": "=Generate a complete 15-week study schedule from these extracted topics. Return ONLY this exact JSON (no extra text):\n\n{\n  \"schedule\": [\n    {\n      \"week_num\": 1,\n      \"week_theme\": \"string — 3–5 word week theme\",\n      \"topics\": [\"topic names for this week\"],\n      \"subtopics\": [\"specific subtopics to cover\"],\n      \"daily_tasks\": {\n        \"monday\": \"string — specific task (2-3h)\",\n        \"tuesday\": \"string\",\n        \"wednesday\": \"string\",\n        \"thursday\": \"string\",\n        \"friday\": \"string\",\n        \"saturday\": \"string — review/practice\",\n        \"sunday\": \"string — light review or rest\"\n      },\n      \"total_hours\": number,\n      \"difficulty_score\": 1-10,\n      \"has_exam\": false,\n      \"exam_name\": null,\n      \"motivation_tip\": \"string — short encouraging tip from StudyBuddy, 1-2 sentences with emoji\",\n      \"resources\": [\"suggested resource or chapter\"]\n    }\n  ]\n}\n\nRules:\n- Generate exactly 15 weeks\n- Distribute topics evenly, harder topics get more days\n- Week 8 and Week 15 are typically exam/review weeks\n- Include actual textbook chapters or topics from the syllabus\n- daily_tasks must be specific and actionable, not vague\n- total_hours should be 8–18 hours per week\n- difficulty_score: 1=very easy, 10=very intense\n- Flag has_exam=true and exam_name for weeks with exams\n- Semester starts: {{ $json.semester_start }}\n\nPARSED SYLLABUS:\n{{ JSON.stringify($json.parsed_syllabus) }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.4,
+          "maxTokens": 4000,
+          "responseFormat": "json_object"
+        }
+      },
+      "id": "node-ai-gen-schedule",
+      "name": "OpenAI: Generate Schedule",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.4,
+      "position": [1960, 400],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE_WITH_CREDENTIAL_ID",
+          "name": "OpenAI API"
+        }
+      },
+      "notes": "Second AI call. Generates the full 15-week study schedule from extracted topics. Uses StudyBuddy persona."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse schedule AI response + compute week dates\nconst meta = $('Code: Parse Topics Response').first().json;\nconst aiResponse = $input.first().json;\n\nlet scheduleData;\ntry {\n  const content = aiResponse.message?.content || aiResponse.choices?.[0]?.message?.content || aiResponse.content || '';\n  scheduleData = typeof content === 'string' ? JSON.parse(content) : content;\n} catch (e) {\n  throw new Error('Failed to parse schedule AI response: ' + e.message);\n}\n\nif (!scheduleData.schedule || scheduleData.schedule.length !== 15) {\n  throw new Error(`Schedule must have exactly 15 weeks. Got: ${scheduleData.schedule?.length}`);\n}\n\n// Compute actual calendar dates for each week\nconst startDate = new Date(meta.semester_start);\n// Find the next Monday from start date\nconst dayOfWeek = startDate.getDay();\nconst daysUntilMonday = dayOfWeek === 0 ? 1 : (dayOfWeek === 1 ? 0 : 8 - dayOfWeek);\nstartDate.setDate(startDate.getDate() + daysUntilMonday);\n\nconst fullSchedule = scheduleData.schedule.map((week, idx) => {\n  const weekStart = new Date(startDate);\n  weekStart.setDate(startDate.getDate() + (idx * 7));\n  const weekEnd = new Date(weekStart);\n  weekEnd.setDate(weekStart.getDate() + 4); // Friday\n  \n  return {\n    ...week,\n    plan_id: meta.plan_id,\n    student_email: meta.student_email,\n    student_name: meta.student_name,\n    course_name: meta.course_name,\n    week_start_date: weekStart.toISOString().split('T')[0],\n    week_end_date: weekEnd.toISOString().split('T')[0],\n    week_start_iso: weekStart.toISOString(),\n    email_sent: false\n  };\n});\n\n// Also return combined metadata for sheet storage\nreturn [{\n  json: {\n    plan_id: meta.plan_id,\n    student_email: meta.student_email,\n    student_name: meta.student_name,\n    course_name: meta.course_name,\n    semester_start: meta.semester_start,\n    drive_file_id: meta.drive_file_id,\n    drive_web_link: meta.drive_web_link,\n    topics_json: JSON.stringify(meta.parsed_syllabus.topics),\n    schedule_json: JSON.stringify(fullSchedule),\n    full_schedule: fullSchedule,\n    topics_count: meta.topics_count,\n    status: 'active',\n    created_at: new Date().toISOString(),\n    current_week: 1,\n    next_email_date: fullSchedule[0].week_start_date\n  }\n}];"
+      },
+      "id": "node-build-schedule",
+      "name": "Code: Build Full Schedule",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2180, 400],
+      "notes": "Parses schedule AI response, computes actual calendar dates for each of the 15 weeks (starting from next Monday), merges all data."
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "REPLACE_WITH_YOUR_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Students",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {
+            "plan_id": "={{ $json.plan_id }}",
+            "student_email": "={{ $json.student_email }}",
+            "student_name": "={{ $json.student_name }}",
+            "course_name": "={{ $json.course_name }}",
+            "semester_start": "={{ $json.semester_start }}",
+            "drive_file_id": "={{ $json.drive_file_id }}",
+            "topics_json": "={{ $json.topics_json }}",
+            "schedule_json": "={{ $json.schedule_json }}",
+            "status": "={{ $json.status }}",
+            "created_at": "={{ $json.created_at }}",
+            "current_week": "={{ $json.current_week }}",
+            "next_email_date": "={{ $json.next_email_date }}"
+          },
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "node-sheet-store-plan",
+      "name": "Google Sheets: Store Plan",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [2400, 400],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_WITH_CREDENTIAL_ID",
+          "name": "Google Sheets OAuth2"
+        }
+      },
+      "notes": "Stores complete student record + full schedule JSON in 'Students' sheet. Replace REPLACE_WITH_YOUR_SHEET_ID with actual spreadsheet ID."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract the full schedule array for loop iteration\nconst data = $input.first().json;\nreturn data.full_schedule.map(week => ({ json: week }));"
+      },
+      "id": "node-split-weeks",
+      "name": "Code: Split Into 15 Weeks",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2620, 400],
+      "notes": "Splits the full_schedule array into 15 individual items so the SplitInBatches node can loop over each week."
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "node-split-batches",
+      "name": "SplitInBatches: Week Loop",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [2840, 400],
+      "notes": "Iterates one week at a time. Each pass creates one Google Calendar event. Connect 'loop' output back to Calendar node."
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "primary",
+          "mode": "list",
+          "cachedResultName": "primary"
+        },
+        "start": "={{ $json.week_start_iso }}",
+        "end": "={{ new Date(new Date($json.week_start_iso).getTime() + 2 * 60 * 60 * 1000).toISOString() }}",
+        "additionalFields": {
+          "summary": "=📚 W{{ $json.week_num }}: {{ $json.week_theme }} — {{ $json.course_name }}",
+          "description": "=🎯 WEEK {{ $json.week_num }} STUDY SESSION\n\n📖 Topics:\n{{ $json.topics.join('\\n• ') }}\n\n📋 DAILY TASKS:\nMonday: {{ $json.daily_tasks.monday }}\nTuesday: {{ $json.daily_tasks.tuesday }}\nWednesday: {{ $json.daily_tasks.wednesday }}\nThursday: {{ $json.daily_tasks.thursday }}\nFriday: {{ $json.daily_tasks.friday }}\nSaturday: {{ $json.daily_tasks.saturday }}\nSunday: {{ $json.daily_tasks.sunday }}\n\n⏱️ Total Hours: {{ $json.total_hours }}h\n💪 Difficulty: {{ $json.difficulty_score }}/10\n\n✨ StudyBuddy Tip: {{ $json.motivation_tip }}\n\n📌 Plan ID: {{ $json.plan_id }}",
+          "colorId": "={{ $json.difficulty_score >= 8 ? '11' : ($json.difficulty_score >= 5 ? '5' : '2') }}",
+          "attendees": "={{ [$json.student_email] }}",
+          "reminders": {
+            "useDefault": false,
+            "overrides": [
+              {
+                "method": "email",
+                "minutes": 1440
+              },
+              {
+                "method": "popup",
+                "minutes": 30
+              }
+            ]
+          }
+        }
+      },
+      "id": "node-calendar-create",
+      "name": "Google Calendar: Create Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.2,
+      "position": [3060, 400],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "REPLACE_WITH_CREDENTIAL_ID",
+          "name": "Google Calendar OAuth2"
+        }
+      },
+      "notes": "Creates one calendar event per week. Color-coded by difficulty: red=hard (8-10), yellow=medium (5-7), green=easy (1-4). Has reminder 24h before and 30min popup."
+    },
+    {
+      "parameters": {
+        "jsCode": "// After loop completes, gather summary for welcome email\nconst allItems = $input.all();\nconst firstItem = allItems[0].json;\nreturn [{\n  json: {\n    plan_id: firstItem.plan_id,\n    student_email: firstItem.student_email,\n    student_name: firstItem.student_name,\n    course_name: firstItem.course_name,\n    semester_start: firstItem.semester_start,\n    weeks_created: allItems.length,\n    first_week: allItems[0].json,\n    last_week: allItems[allItems.length - 1].json\n  }\n}];"
+      },
+      "id": "node-post-loop",
+      "name": "Code: Post-Loop Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [3280, 400],
+      "notes": "Runs after the SplitInBatches loop is done. Collects summary data for the welcome email."
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are StudyBuddy 🧠 — a warm, motivational, and slightly witty AI study coach. You write short, energetic emails that make students genuinely excited to study. Your tone: encouraging best friend + expert tutor. You use relevant emojis but not excessively. You ALWAYS respond with a complete HTML email body only — no subject line, no 'From:', just the HTML body content starting with a <div>."
+            },
+            {
+              "role": "user",
+              "content": "=Write a welcome email HTML body for a student who just set up their semester study plan. Make it warm, exciting, and practical.\n\nStudent: {{ $json.student_name }}\nCourse: {{ $json.course_name }}\nSemester Start: {{ $json.semester_start }}\nTotal Weeks: 15\nWeek 1 Theme: {{ $json.first_week.week_theme }}\nWeek 1 Topics: {{ $json.first_week.topics.join(', ') }}\n\nInclude:\n1. Warm welcome from StudyBuddy\n2. What their plan covers (brief)\n3. What to expect Week 1\n4. A motivational sign-off\n5. Reminder that they'll get weekly prep emails every Sunday\n\nUse inline CSS for styling. Make it mobile-friendly. Use a clean, modern layout with a colored header. Keep it under 400 words."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7,
+          "maxTokens": 1500
+        }
+      },
+      "id": "node-ai-welcome-email",
+      "name": "OpenAI: Write Welcome Email",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.4,
+      "position": [3500, 400],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE_WITH_CREDENTIAL_ID",
+          "name": "OpenAI API"
+        }
+      },
+      "notes": "Generates the one-time welcome email using StudyBuddy persona."
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Code: Post-Loop Summary').first().json.student_email }}",
+        "subject": "=🎓 Your 15-Week {{ $('Code: Post-Loop Summary').first().json.course_name }} Study Plan is LIVE!",
+        "emailType": "html",
+        "message": "={{ $input.first().json.message?.content || $input.first().json.choices?.[0]?.message?.content || $input.first().json.content || 'Welcome to your study plan!' }}",
+        "options": {
+          "replyTo": "studybuddy-noreply@yourdomain.com",
+          "appendAttribution": false
+        }
+      },
+      "id": "node-gmail-welcome",
+      "name": "Gmail: Send Welcome Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [3720, 400],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "REPLACE_WITH_CREDENTIAL_ID",
+          "name": "Gmail OAuth2"
+        }
+      },
+      "notes": "Sends the AI-generated welcome email to the student. Update replyTo with your actual email."
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"plan_id\": \"{{ $('Code: Build Full Schedule').first().json.plan_id }}\",\n  \"message\": \"Your 15-week study plan for {{ $('Code: Build Full Schedule').first().json.course_name }} is ready!\",\n  \"student\": \"{{ $('Code: Build Full Schedule').first().json.student_name }}\",\n  \"calendar_events_created\": 15,\n  \"welcome_email_sent\": true,\n  \"first_week_starts\": \"{{ $('Code: Build Full Schedule').first().json.next_email_date }}\"\n}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "node-respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [3940, 400],
+      "notes": "Returns JSON success response to the upload form. Includes plan_id for client-side tracking."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.error }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ]
+        }
+      },
+      "id": "node-error-check",
+      "name": "IF: Error Check",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [3060, 600],
+      "notes": "Optional error routing. Connect any node's error output here to handle failures gracefully."
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": false,\n  \"error\": \"{{ $json.error || 'Processing failed' }}\",\n  \"message\": \"We encountered an issue processing your syllabus. Please check the PDF is text-based (not scanned) and try again.\"\n}",
+        "options": {
+          "responseCode": 422
+        }
+      },
+      "id": "node-error-respond",
+      "name": "Respond: Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [3280, 600],
+      "notes": "Returns structured error response to the upload form."
+    }
+  ],
+  "connections": {
+    "Webhook: Receive Upload": {
+      "main": [
+        [{ "node": "Code: Validate & Prep", "type": "main", "index": 0 }]
+      ]
+    },
+    "Code: Validate & Prep": {
+      "main": [
+        [{ "node": "Google Drive: Store PDF", "type": "main", "index": 0 }]
+      ]
+    },
+    "Google Drive: Store PDF": {
+      "main": [
+        [{ "node": "Code: Merge Drive Meta", "type": "main", "index": 0 }]
+      ]
+    },
+    "Code: Merge Drive Meta": {
+      "main": [
+        [{ "node": "Extract From File: PDF Text", "type": "main", "index": 0 }]
+      ]
+    },
+    "Extract From File: PDF Text": {
+      "main": [
+        [{ "node": "Code: Merge PDF Text", "type": "main", "index": 0 }]
+      ]
+    },
+    "Code: Merge PDF Text": {
+      "main": [
+        [{ "node": "OpenAI: Extract Topics", "type": "main", "index": 0 }]
+      ]
+    },
+    "OpenAI: Extract Topics": {
+      "main": [
+        [{ "node": "Code: Parse Topics Response", "type": "main", "index": 0 }]
+      ]
+    },
+    "Code: Parse Topics Response": {
+      "main": [
+        [{ "node": "OpenAI: Generate Schedule", "type": "main", "index": 0 }]
+      ]
+    },
+    "OpenAI: Generate Schedule": {
+      "main": [
+        [{ "node": "Code: Build Full Schedule", "type": "main", "index": 0 }]
+      ]
+    },
+    "Code: Build Full Schedule": {
+      "main": [
+        [{ "node": "Google Sheets: Store Plan", "type": "main", "index": 0 }]
+      ]
+    },
+    "Google Sheets: Store Plan": {
+      "main": [
+        [{ "node": "Code: Split Into 15 Weeks", "type": "main", "index": 0 }]
+      ]
+    },
+    "Code: Split Into 15 Weeks": {
+      "main": [
+        [{ "node": "SplitInBatches: Week Loop", "type": "main", "index": 0 }]
+      ]
+    },
+    "SplitInBatches: Week Loop": {
+      "main": [
+        [{ "node": "Google Calendar: Create Event", "type": "main", "index": 0 }],
+        [{ "node": "Code: Post-Loop Summary", "type": "main", "index": 0 }]
+      ]
+    },
+    "Google Calendar: Create Event": {
+      "main": [
+        [{ "node": "SplitInBatches: Week Loop", "type": "main", "index": 0 }]
+      ]
+    },
+    "Code: Post-Loop Summary": {
+      "main": [
+        [{ "node": "OpenAI: Write Welcome Email", "type": "main", "index": 0 }]
+      ]
+    },
+    "OpenAI: Write Welcome Email": {
+      "main": [
+        [{ "node": "Gmail: Send Welcome Email", "type": "main", "index": 0 }]
+      ]
+    },
+    "Gmail: Send Welcome Email": {
+      "main": [
+        [{ "node": "Respond to Webhook", "type": "main", "index": 0 }]
+      ]
+    },
+    "IF: Error Check": {
+      "main": [
+        [{ "node": "Respond: Error", "type": "main", "index": 0 }],
+        []
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "",
+    "timezone": "Asia/Kolkata"
+  },
+  "staticData": null,
+  "tags": ["syllabus-engine", "workflow-a", "ingestion"],
+  "triggerCount": 1,
+  "updatedAt": "2026-03-16T00:00:00.000Z",
+  "versionId": "1"
+}
