@@ -1,105 +1,104 @@
 "use client";
 
-import Link from "next/link";
+import { trips, itineraryDays } from "@/lib/data";
 
 export default function SharedTripPage() {
+  const trip = trips[0]; // Demo data for shared view
+
   return (
-    <div className="bg-surface min-h-screen">
-      <header className="flex justify-between items-center px-[16px] md:px-[64px] h-16 sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
-        <div className="flex items-center gap-sm">
-          <span className="text-headline-sm text-primary">Traveloop</span>
-          <span className="hidden md:inline-block h-4 w-px bg-outline-variant mx-xs" />
-          <span className="hidden md:inline-block text-label-md text-on-surface-variant">Quiet Concierge</span>
+    <div className="min-h-screen bg-surface">
+      {/* Public Header */}
+      <header className="h-16 px-4 md:px-16 border-b border-outline-variant bg-white flex items-center justify-between sticky top-0 z-50">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+            <span className="material-symbols-outlined text-on-primary text-[18px]">explore_nearby</span>
+          </div>
+          <h1 className="typ-headline-sm text-primary font-bold">Traveloop</h1>
         </div>
-        <div className="flex items-center gap-md">
-          <button className="bg-primary text-on-primary px-lg py-sm rounded-full text-label-md">Copy Trip</button>
-        </div>
+        <button className="bg-primary text-on-primary px-6 py-2 rounded-full typ-label-md font-bold hover:opacity-90 active:scale-95 transition-all">
+          Plan Your Own
+        </button>
       </header>
 
-      <main className="max-w-[1200px] mx-auto px-[16px] md:px-[64px] py-xl">
-        {/* Hero */}
-        <section className="mb-xl">
-          <div className="relative h-[400px] w-full rounded-xl overflow-hidden mb-lg">
-            <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsIhy4W1edJyWY0NP-MLR6WpiFu-hxOMlYkuHAWKx125NevayB5WU_DQcp4rlIze5FgVw_7_D1wDo49TvaNMGQUAE6YAG12p7JWNDtSpiaf_hc0rdPVpeXRjT6xn6lD_ouUXwtHdwqB8033fcEIPoSHolqMOXxXWozTU-xS_2nqNq2rCkDplKlsUNy9JfifAxD8vCSGymVG81zCev7RFYltAD9EMnvEjbtvHrNq3-4Jz57P5cyjP9zuep7HveGWr8HcVX3MQqcVJyI" alt="Paris" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-lg">
-              <span className="text-label-sm text-white/80 tracking-widest uppercase mb-xs">7 Days in Paris &amp; Lyon</span>
-              <h1 className="text-display text-white mb-sm">Autumn in the Heart of France</h1>
-              <div className="flex items-center gap-md text-white/90 text-label-md">
-                <div className="flex items-center gap-xs"><span className="material-symbols-outlined text-[18px]">calendar_today</span>Oct 12 — Oct 18</div>
-                <div className="flex items-center gap-xs"><span className="material-symbols-outlined text-[18px]">group</span>2 Travelers</div>
-              </div>
+      <main className="px-4 md:px-16 py-10 max-w-screen-xl mx-auto w-full space-y-16">
+        {/* Shared Hero */}
+        <div className="relative h-[400px] rounded-3xl overflow-hidden shadow-xl border border-outline-variant/30">
+          <img src={trip.image} alt={trip.title} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          <div className="absolute bottom-0 left-0 p-10 text-white space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-white/70">share</span>
+              <span className="typ-label-md font-bold uppercase tracking-widest text-white/70">Publicly Shared Itinerary</span>
             </div>
+            <h1 className="typ-display leading-tight">{trip.title}</h1>
+            <p className="typ-body-lg opacity-90">{trip.destination} • {trip.dates}</p>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-xl items-start">
-            <div className="md:col-span-2">
-              <p className="text-body-lg text-on-surface-variant leading-relaxed">A curated journey through the sensory delights of France. From the tucked-away cafes of Le Marais to the silk-weaving workshops of Lyon.</p>
-            </div>
-            <div className="bg-surface-container-low p-lg rounded-xl border border-outline-variant/30">
-              <h3 className="text-headline-sm mb-md">Trip Overview</h3>
-              <ul className="space-y-md">
-                <li className="flex justify-between text-label-md"><span className="text-on-surface-variant">Estimated Budget</span><span className="text-primary">€4,200</span></li>
-                <li className="flex justify-between text-label-md"><span className="text-on-surface-variant">Pace</span><span className="text-primary">Relaxed</span></li>
-                <li className="flex justify-between text-label-md"><span className="text-on-surface-variant">Main Mode</span><span className="text-primary">TGV First Class</span></li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Itinerary */}
-        <section className="max-w-3xl">
-          <h2 className="text-headline-lg mb-xl">Itinerary</h2>
-          <div className="space-y-xl">
-            {[
-              { day: 1, date: "Oct 12", title: "Arrival & Le Marais", items: [
-                { time: "14:00", type: "Check-in", name: "Hotel Pavillon de la Reine", desc: "A hidden gem on Place des Vosges." },
-                { time: "16:30", type: "Activity", name: "Coffee at Boot Café", desc: "The smallest cafe in Paris." },
-              ]},
-              { day: 2, date: "Oct 13", title: "Artistic Immersion", items: [
-                { time: "10:00", type: "Museum", name: "Musée de l'Orangerie", desc: "Private viewing of Monet's Water Lilies." },
-              ]},
-            ].map(day => (
-              <div key={day.day} className="relative itinerary-line pb-xl">
-                <div className="flex items-start gap-lg">
-                  <div className="z-10 bg-primary w-2 h-2 rounded-full mt-2 ring-4 ring-surface" />
-                  <div className="flex-1">
-                    <div className="mb-lg">
-                      <span className="text-label-sm text-on-surface-variant tracking-wider uppercase">Day {day.day} — {day.date}</span>
-                      <h3 className="text-headline-md mt-xs">{day.title}</h3>
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div className="lg:col-span-8 space-y-16">
+            <section>
+              <h3 className="typ-headline-md text-primary mb-10 font-bold border-l-4 border-primary pl-4">Full Itinerary</h3>
+              <div className="space-y-12">
+                {itineraryDays.map(day => (
+                  <div key={day.day} className="relative pl-8">
+                    <div className="absolute left-0 top-0 bottom-0 timeline-line" />
+                    <div className="absolute left-[-4px] top-1 w-2 h-2 rounded-full bg-primary" />
+                    <div className="mb-6">
+                      <h4 className="typ-headline-sm text-primary font-bold">Day {day.day}: {day.title}</h4>
+                      <p className="typ-label-sm text-on-surface-variant uppercase tracking-widest mt-1">{day.date}</p>
                     </div>
-                    <div className="grid grid-cols-1 gap-md">
-                      {day.items.map((item, i) => (
-                        <div key={i} className="group bg-white border border-outline-variant rounded-xl p-md hover:bg-surface-container-low transition-colors">
-                          <span className="text-label-sm text-secondary uppercase mb-xs block">{item.type} • {item.time}</span>
-                          <h4 className="text-headline-sm text-primary mb-1">{item.name}</h4>
-                          <p className="text-on-surface-variant text-body-sm">{item.desc}</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {day.activities.map((a, i) => (
+                        <div key={i} className="p-6 bg-white rounded-2xl border border-outline-variant/30 shadow-sm">
+                          <div className="flex justify-between items-start mb-4">
+                            <h5 className="typ-label-md text-primary font-bold">{a.title}</h5>
+                            <span className="typ-label-sm text-on-surface-variant bg-surface-container px-2 py-1 rounded">{a.time}</span>
+                          </div>
+                          <p className="typ-body-sm text-on-surface-variant leading-relaxed">{a.description}</p>
                         </div>
                       ))}
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </section>
           </div>
-        </section>
+
+          <aside className="lg:col-span-4">
+            <div className="sticky top-32 space-y-8">
+              <div className="p-8 border border-outline-variant rounded-2xl bg-white shadow-lg space-y-8">
+                <div className="flex flex-col items-center text-center space-y-4">
+                  <div className="w-20 h-20 rounded-full border-4 border-surface-container overflow-hidden">
+                    <img src="https://lh3.googleusercontent.com/a/ACg8ocL8Rj-mR_X7fD9_4Bf8Bf9Vf9Vf9Vf9Vf9Vf9Vf9Vf9=s96-c" alt="Elena" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <h4 className="typ-headline-sm text-primary font-bold">Elena Rodriguez</h4>
+                    <p className="typ-body-sm text-on-surface-variant">Traveler & Curator</p>
+                  </div>
+                </div>
+                <div className="space-y-4 pt-4 border-t border-outline-variant">
+                  <div className="flex justify-between items-center">
+                    <span className="typ-label-md text-on-surface-variant uppercase font-bold tracking-tighter">Status</span>
+                    <span className="px-3 py-1 bg-primary text-on-primary rounded-full typ-label-sm font-bold">Completed</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="typ-label-md text-on-surface-variant uppercase font-bold tracking-tighter">Total Spent</span>
+                    <span className="typ-headline-sm text-primary font-bold">{trip.budget}</span>
+                  </div>
+                </div>
+                <button className="w-full py-4 bg-primary text-on-primary rounded-xl typ-label-md font-bold shadow-md hover:opacity-90 transition-all">
+                  Copy this Itinerary
+                </button>
+              </div>
+            </div>
+          </aside>
+        </div>
       </main>
 
-      <footer className="mt-xl py-xl bg-surface border-t border-outline-variant">
-        <div className="max-w-[1200px] mx-auto px-[16px] md:px-[64px]">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-lg">
-            <div className="text-center md:text-left">
-              <h4 className="text-headline-sm mb-xs">Loved this trip?</h4>
-              <p className="text-on-surface-variant text-body-sm">Copy this entire itinerary to your own Traveloop account.</p>
-            </div>
-            <Link href="/login" className="bg-primary text-on-primary px-xl py-md rounded-full text-label-md flex items-center gap-sm">
-              <span className="material-symbols-outlined">content_copy</span>Copy to My Trips
-            </Link>
-          </div>
-          <div className="mt-xl pt-lg border-t border-outline-variant/30 flex justify-between items-center text-on-surface-variant text-label-sm">
-            <span>Created with Traveloop</span>
-            <div className="flex gap-md"><a className="hover:text-primary" href="#">Privacy</a><a className="hover:text-primary" href="#">Terms</a></div>
-          </div>
-        </div>
+      <footer className="py-20 border-t border-outline-variant bg-surface-container-low text-center">
+        <p className="typ-body-sm text-on-surface-variant">Built with Traveloop • Essentialism in Motion</p>
       </footer>
     </div>
   );
