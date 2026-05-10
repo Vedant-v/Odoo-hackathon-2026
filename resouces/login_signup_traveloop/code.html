@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dadada",
+                        "inverse-primary": "#c8c5ca",
+                        "outline-variant": "#c8c5cb",
+                        "on-tertiary-fixed": "#01201a",
+                        "tertiary-fixed-dim": "#adcdc4",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-container-highest": "#e2e2e2",
+                        "background": "#f9f9f9",
+                        "on-tertiary-fixed-variant": "#2e4c45",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e8e8e8",
+                        "inverse-surface": "#2f3131",
+                        "on-secondary-container": "#54647a",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#5f5e61",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#47464a",
+                        "secondary": "#505f76",
+                        "primary-fixed": "#e4e1e6",
+                        "surface-container-low": "#f3f3f3",
+                        "primary-container": "#1b1b1e",
+                        "surface-container": "#eeeeee",
+                        "on-error": "#ffffff",
+                        "outline": "#77767b",
+                        "on-tertiary-container": "#6b8a82",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f9f9f9",
+                        "primary-fixed-dim": "#c8c5ca",
+                        "secondary-container": "#d0e1fb",
+                        "tertiary": "#000000",
+                        "tertiary-fixed": "#c8eae0",
+                        "on-primary-fixed": "#1b1b1e",
+                        "on-background": "#1a1c1c",
+                        "surface-variant": "#e2e2e2",
+                        "on-surface-variant": "#47464b",
+                        "on-surface": "#1a1c1c",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-primary-container": "#858387",
+                        "error": "#ba1a1a",
+                        "primary": "#000000",
+                        "tertiary-container": "#01201a",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "secondary-fixed": "#d3e4fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "unit": "4px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "margin-desktop": "64px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "xl": "40px",
+                        "max-width": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "label-md": ["Inter"],
+                        "display": ["Manrope"],
+                        "label-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<main class="flex min-h-screen">
+<!-- Visual Section (Left) -->
+<section class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-surface-container">
+<img alt="Soft-focus mountain landscape" class="absolute inset-0 w-full h-full object-cover grayscale opacity-80" data-alt="A cinematic, soft-focus landscape of mist-covered mountains and minimalist architecture in the distance. The lighting is ethereal and diffused, creating a serene and quiet atmosphere. The color palette is restricted to soft greys, charcoal, and warm whites, embodying a premium travel brand's minimalist and sophisticated aesthetic. The mood is meditative and peaceful." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkbGLPSFW1E1zumMmodlMAjB6J27Q931HRVUrQPYVAPfBrHnr0Pzceyg4CvRxNOzkKiG8WFqjwfp4VbEyEq_Loe7ui70j7AZ3rPi8mITtAgakrSZOivYebYsYdXFW0HARQN9C5sByQTWnB2mf8ZsBXrGgzdD_6jBhQnRykO9hHyM0ExA3ZOxH9mLrWdKOypjukPmOXvp0kUxLRhE9jACU9bsoMDxwXBObFX4TVpynNuHNBXHv8Tw2uH9SuYnfuU_mWaRN2x9oJVyTz"/>
+<div class="relative z-10 p-margin-desktop flex flex-col justify-between h-full">
+<div class="font-display text-headline-md text-primary">Traveloop</div>
+<div class="max-w-md">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-md">Your journey, articulated through silence.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">The quiet concierge for the modern traveler. Experience effortless coordination and essential clarity.</p>
+</div>
+</div>
+</section>
+<!-- Authentication Section (Right) -->
+<section class="w-full lg:w-1/2 flex flex-col items-center justify-center bg-surface p-margin-mobile md:p-margin-desktop">
+<div class="w-full max-w-[400px]">
+<!-- Mobile Wordmark -->
+<div class="lg:hidden mb-xl text-center">
+<h1 class="font-display text-headline-md text-primary tracking-tight">Traveloop</h1>
+</div>
+<div class="text-center lg:text-left mb-xl">
+<h2 class="font-headline-md text-headline-md text-primary mb-xs">Welcome back</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Please enter your credentials to continue</p>
+</div>
+<form class="space-y-lg">
+<!-- Email Input -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant px-unit" for="email">Email</label>
+<input class="w-full px-md py-md bg-transparent border border-outline-variant rounded-lg focus:ring-0 focus:border-primary transition-colors text-body-md placeholder:text-outline" id="email" placeholder="name@example.com" type="email"/>
+</div>
+<!-- Password Input -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center px-unit">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+<a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<input class="w-full px-md py-md bg-transparent border border-outline-variant rounded-lg focus:ring-0 focus:border-primary transition-colors text-body-md placeholder:text-outline" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-md bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:opacity-90 active:scale-[0.98] transition-all" type="submit">
+                        Sign In
+                    </button>
+</form>
+<div class="relative my-xl">
+<div class="absolute inset-0 flex items-center">
+<span class="w-full border-t border-outline-variant"></span>
+</div>
+<div class="relative flex justify-center text-label-sm uppercase">
+<span class="bg-surface px-md text-on-surface-variant">Or continue with</span>
+</div>
+</div>
+<!-- Social Login -->
+<button class="w-full py-md flex items-center justify-center gap-md bg-transparent border border-outline-variant rounded-lg font-label-md text-label-md text-primary hover:bg-surface-container-low transition-colors active:scale-[0.98]">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="currentColor"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="currentColor"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.24.81-.6z" fill="currentColor"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="currentColor"></path>
+</svg>
+                    Google
+                </button>
+<!-- Signup Footer -->
+<p class="mt-xl text-center font-body-sm text-body-sm text-on-surface-variant">
+                    Don't have an account? 
+                    <a class="font-label-md text-label-md text-primary hover:underline ml-xs" href="#">Sign up</a>
+</p>
+</div>
+<!-- Footer Links -->
+<footer class="mt-xl lg:mt-auto pt-xl w-full max-w-[400px]">
+<div class="flex justify-center gap-lg text-label-sm text-on-surface-variant opacity-60">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</footer>
+</section>
+</main>
+</body></html>

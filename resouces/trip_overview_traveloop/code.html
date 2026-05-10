@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Traveloop - Trip Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#1b1b1e",
+                    "primary-container": "#1b1b1e",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#54647a",
+                    "on-tertiary-fixed": "#01201a",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dadada",
+                    "on-primary-container": "#858387",
+                    "secondary-fixed": "#d3e4fe",
+                    "surface": "#f9f9f9",
+                    "surface-tint": "#5f5e61",
+                    "inverse-primary": "#c8c5ca",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-background": "#1a1c1c",
+                    "background": "#f9f9f9",
+                    "tertiary-container": "#01201a",
+                    "outline": "#77767b",
+                    "on-surface-variant": "#47464b",
+                    "tertiary": "#000000",
+                    "tertiary-fixed": "#c8eae0",
+                    "secondary-container": "#d0e1fb",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#c8c5ca",
+                    "primary-fixed": "#e4e1e6",
+                    "primary": "#000000",
+                    "error": "#ba1a1a",
+                    "on-surface": "#1a1c1c",
+                    "tertiary-fixed-dim": "#adcdc4",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#0b1c30",
+                    "secondary": "#505f76",
+                    "surface-variant": "#e2e2e2",
+                    "outline-variant": "#c8c5cb",
+                    "on-tertiary-container": "#6b8a82",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eeeeee",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "surface-container-low": "#f3f3f3",
+                    "on-tertiary-fixed-variant": "#2e4c45",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-primary-fixed-variant": "#47464a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "xl": "40px",
+                    "unit": "4px",
+                    "gutter": "20px",
+                    "margin-desktop": "64px",
+                    "max-width": "1200px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "headline-sm": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scale-98 { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased">
+<!-- Desktop Sidebar -->
+<nav class="hidden md:flex flex-col py-lg px-md h-full bg-surface dark:bg-surface-container-low border-r border-outline-variant dark:border-outline fixed left-0 top-0 w-64 z-50">
+<div class="mb-xl px-sm">
+<span class="font-display text-headline-md text-primary dark:text-on-primary-fixed">Traveloop</span>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-widest mt-xs">Quiet Concierge</p>
+</div>
+<div class="flex flex-col gap-sm flex-grow">
+<a class="flex items-center gap-md px-sm py-sm rounded-lg hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-sm py-sm rounded-lg text-primary dark:text-on-primary-fixed font-bold border-r-2 border-primary dark:border-on-primary-fixed hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">explore_nearby</span>
+<span class="font-label-md">My Trips</span>
+</a>
+<a class="flex items-center gap-md px-sm py-sm rounded-lg hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-md">Discovery</span>
+</a>
+<a class="flex items-center gap-md px-sm py-sm rounded-lg hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md">Budget</span>
+</a>
+<a class="flex items-center gap-md px-sm py-sm rounded-lg hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span class="font-label-md">Checklist</span>
+</a>
+<a class="flex items-center gap-md px-sm py-sm rounded-lg hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md">Journal</span>
+</a>
+</div>
+<button class="mb-xl bg-primary text-on-primary py-md rounded-xl font-label-md hover:opacity-90 transition-all active:scale-95">
+            New Trip
+        </button>
+<div class="flex flex-col gap-sm border-t border-outline-variant pt-lg">
+<a class="flex items-center gap-md px-sm py-sm rounded-lg hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-md px-sm py-sm rounded-lg hover:bg-surface-container-low transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Top Navigation -->
+<header class="flex justify-between items-center px-margin-mobile md:pl-[280px] md:pr-margin-desktop h-16 w-full sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined md:hidden">menu</span>
+<h1 class="font-display text-headline-sm text-primary">Kyoto Autumn Escape</h1>
+</div>
+<div class="flex items-center gap-lg">
+<button class="hidden md:block font-label-md text-on-surface-variant hover:text-primary transition-colors">Share Itinerary</button>
+<button class="hidden md:block bg-primary text-on-primary px-lg py-sm rounded-full font-label-md hover:opacity-90 transition-all active:scale-95">Create New Trip</button>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">notifications</span>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_rNhONJwMC0rWTMpG_AMneexBKoUDFRhEyr8hAOX7AdNJwo_qk_p972vBbTYkZJVJNWHdWT_OY5pHcBON0t0QKW_jfV2C6hQ1biJOa7L7hGvUn6o_XOkhLdLPZY2elufLn66FDphT9wXeTYhHXxEYzk16SfNbRutEPTwtIB1XKEldIHbXsbFDkgo0dGFotI00U_sa4N1JhXJXkqpGd5cZQO5zFBr1MRRK1a4bHc3UR98k2q0_l-_RPx9a7D1uEA7CNvXGxbXyFyic"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="md:ml-64 px-margin-mobile md:px-margin-desktop pb-xl max-w-[1400px]">
+<!-- Hero Section -->
+<section class="mt-lg relative h-[300px] md:h-[400px] rounded-xl overflow-hidden mb-xl">
+<img class="w-full h-full object-cover" data-alt="A wide cinematic shot of a serene Zen temple garden in Kyoto during peak autumn. The vibrant red and orange maple leaves frame a traditional wooden structure and a stone path. Soft, diffused morning light creates a peaceful and high-end travel aesthetic with deep contrast and natural warmth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzCdQ7SgU95VU-SmrYUEEwK-uDXAC1ujERMTna5KHJOFT_PA1_8mMx7HODS6tX3w82NBBPQcmQ0QLa7qxX-oB2JIYrvd8JpUKRc3gSJ5aFqQgZFiSvXYJyHiQD0y79knatkiPfdGP_nPiObY6Pa722hWvtCIqFmg9Uc3D5B7xaWKqYlr93fWDGrSrG5DHFz_H43rKf5vyyHMD2fiYKr3HIIRlBy-KfoQfyF7Nd39uq0cczpaTRkd3wnEdYOtCIxdN93QMa0ouEsKm6"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-lg">
+<div class="flex flex-wrap items-center gap-md">
+<span class="bg-white/20 backdrop-blur-md text-white px-md py-xs rounded-full text-label-sm">Nov 12 — Nov 18, 2024</span>
+<span class="bg-white/20 backdrop-blur-md text-white px-md py-xs rounded-full text-label-sm">Japan</span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Info -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg mb-xl">
+<!-- Collaborators -->
+<div class="md:col-span-4 p-lg bg-surface-container-low border border-outline-variant rounded-xl flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-primary mb-md">Travelers</h3>
+<div class="flex -space-x-3 mb-md">
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="Close up portrait of a smiling woman with glasses in a professional studio setting, high-key lighting, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMc7TioptQWQGqB0afkCn_YvMaEEb3AfSJ2EBuc9JOc7miT1k75IJTH19PYbbKh2vK-BZo5ltK-x0YyD0r5NwOKNKmW7dmn0AiUN19HCF4xXCUdZMOo7CRDPsILHmHsHuRZgLntqY2GOPchGxJgGKOS8FHG7ZxSRoqIRiaA0_YywkeQ-M2ofaHkxKwSrqmtDEh_MGm-RZHgEv3m1sF4qK3BvqiPT3WlIEObukjQoQ0GXkCAidz43BgrS0l6zfNP-mW6-rR1OVcF5MN"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="Portrait of a young man with a beard looking thoughtfully at the camera, clean white background, soft cinematic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJVArCEENnR8qu1TerNP2jDE6YTNL5YiYaQGyVqxvE_PWTjThJ7B4lFQgjByuVfW2Ap1GMkNuvESHsr2hyOYwX5BDlLZd4bQIKH6cTtxs5Qqb2V0bScSAJkj6V9IAhh35ZMnLyoIGupZ64MjT6Alajm-jQXoyU17ukb4th96YKlEL5Fw8CClKjn7PsAG9NZAylY5hmBJU5OSNY1QsXV98TyhSzXYx6wbqyIWPaboWDIJOpyIr84V1mLlLP3S30-r5lg3QiFpbo7OW0"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="Modern minimalist headshot of a woman with short hair, warm natural lighting, soft focus background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4d0chsWiysUt6toiqPUwNKQ5oBjDvZ2LYmf_irRvKZkUMwTOYLPzcS-7v3tdwmDhwIdzTo0qHE8CaMugnG3z5rbZtPcZ_rTEU66mgPFBqZ10UnmcFQ8Ug8y5PXE2TSpITR2Ab0eJ1fBm_bK0dbwkxaZ1MDkU8GaUpuyCQPwBZGkigr2gdXNoa9kKBPKkBitnhwH6SHH-jhZDAYWqdCMx01Ibl-aGb4RZ4doi8Y72scO_glduQ7clqK_Vtnr-N3k33WpY44OukuHJJ"/>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-primary-fixed flex items-center justify-center text-label-sm font-bold">+2</div>
+</div>
+</div>
+<button class="text-primary font-label-md flex items-center gap-xs hover:gap-sm transition-all">
+                    Invite others <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<!-- Weather Widget -->
+<div class="md:col-span-4 p-lg bg-white border border-outline-variant rounded-xl flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-[48px] text-on-secondary-container mb-sm">light_mode</span>
+<div class="text-display font-display text-primary leading-none">14°C</div>
+<div class="text-on-surface-variant font-label-md mt-xs">Clear skies in Kyoto</div>
+<div class="mt-md grid grid-cols-3 gap-lg w-full pt-md border-t border-outline-variant/30">
+<div>
+<p class="text-label-sm text-on-surface-variant">Low</p>
+<p class="font-bold">8°</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">High</p>
+<p class="font-bold">16°</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Rain</p>
+<p class="font-bold">2%</p>
+</div>
+</div>
+</div>
+<!-- Budget Snapshot -->
+<div class="md:col-span-4 p-lg bg-surface-container-low border border-outline-variant rounded-xl flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-primary mb-xs">Budget</h3>
+<p class="text-label-sm text-on-surface-variant mb-md">Estimated total spend</p>
+<div class="text-headline-lg font-display text-primary mb-sm">$3,420.00</div>
+<div class="w-full bg-outline-variant h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+</div>
+<div class="flex justify-between mt-md">
+<span class="text-label-sm text-on-surface-variant">Spent: $2,100</span>
+<span class="text-label-sm text-on-surface-variant">Remaining: $1,320</span>
+</div>
+</div>
+</div>
+<!-- Timeline and Notes -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+<!-- Condensed Timeline -->
+<div class="lg:col-span-2">
+<div class="flex justify-between items-end mb-lg">
+<h2 class="font-headline-md text-primary">Timeline Preview</h2>
+<button class="text-label-md text-primary hover:underline">View Full Itinerary</button>
+</div>
+<div class="space-y-0">
+<!-- Timeline Item -->
+<div class="relative pl-lg pb-xl last:pb-0">
+<div class="absolute left-0 top-2 w-[1px] h-full bg-outline-variant"></div>
+<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-primary"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md group">
+<div class="flex gap-md items-center">
+<div class="text-label-sm text-on-surface-variant w-16 uppercase">Day 01</div>
+<div>
+<h4 class="font-headline-sm group-hover:text-primary transition-colors">Arrival &amp; Gion District</h4>
+<p class="text-body-sm text-on-surface-variant">Check-in at Ritz-Carlton, evening walk in Gion.</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="bg-surface-container text-on-surface-variant px-sm py-xs rounded text-label-sm">3 events</span>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Timeline Item -->
+<div class="relative pl-lg pb-xl last:pb-0">
+<div class="absolute left-0 top-2 w-[1px] h-full bg-outline-variant"></div>
+<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-primary"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md group">
+<div class="flex gap-md items-center">
+<div class="text-label-sm text-on-surface-variant w-16 uppercase">Day 02</div>
+<div>
+<h4 class="font-headline-sm group-hover:text-primary transition-colors">Arashiyama Bamboo Forest</h4>
+<p class="text-body-sm text-on-surface-variant">Morning hike followed by Tenryu-ji Temple visit.</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="bg-surface-container text-on-surface-variant px-sm py-xs rounded text-label-sm">4 events</span>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Timeline Item -->
+<div class="relative pl-lg pb-xl last:pb-0">
+<div class="absolute left-0 top-2 w-[1px] h-0 bg-outline-variant"></div>
+<div class="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md group">
+<div class="flex gap-md items-center opacity-50">
+<div class="text-label-sm text-on-surface-variant w-16 uppercase">Day 03</div>
+<div>
+<h4 class="font-headline-sm">Fushimi Inari Gates</h4>
+<p class="text-body-sm text-on-surface-variant">Early start at the thousand vermilion gates.</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline-variant">lock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Links / Notes -->
+<div class="lg:col-span-1">
+<h2 class="font-headline-md text-primary mb-lg">Essential Notes</h2>
+<div class="grid grid-cols-1 gap-md">
+<div class="p-md bg-white border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-md mb-xs">
+<span class="material-symbols-outlined text-primary">description</span>
+<h4 class="font-label-md text-primary">Entry Requirements</h4>
+</div>
+<p class="text-body-sm text-on-surface-variant">Visa documentation and Visit Japan Web QR codes.</p>
+</div>
+<div class="p-md bg-white border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-md mb-xs">
+<span class="material-symbols-outlined text-primary">train</span>
+<h4 class="font-label-md text-primary">JR Pass Confirmation</h4>
+</div>
+<p class="text-body-sm text-on-surface-variant">Digital voucher ID: JP-9921-2201</p>
+</div>
+<div class="p-md bg-white border border-outline-variant rounded-lg hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-md mb-xs">
+<span class="material-symbols-outlined text-primary">restaurant</span>
+<h4 class="font-label-md text-primary">Dietary Phrases</h4>
+</div>
+<p class="text-body-sm text-on-surface-variant">Japanese translations for gluten-free dining.</p>
+</div>
+<button class="w-full py-md border-2 border-dashed border-outline-variant rounded-lg text-on-surface-variant font-label-md flex items-center justify-center gap-sm hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span> Add Note
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Nav -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-4 bg-surface dark:bg-surface-container-low border-t border-outline-variant dark:border-outline shadow-sm md:hidden rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-on-primary-fixed font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="text-label-sm">Trips</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="text-label-sm">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-label-sm">Budget</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant" href="#">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="text-label-sm">Menu</span>
+</a>
+</nav>
+</body></html>

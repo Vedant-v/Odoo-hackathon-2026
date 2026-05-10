@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dadada",
+                    "inverse-primary": "#c8c5ca",
+                    "outline-variant": "#c8c5cb",
+                    "on-tertiary-fixed": "#01201a",
+                    "tertiary-fixed-dim": "#adcdc4",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "surface-container-highest": "#e2e2e2",
+                    "background": "#f9f9f9",
+                    "on-tertiary-fixed-variant": "#2e4c45",
+                    "surface-bright": "#f9f9f9",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e8e8e8",
+                    "inverse-surface": "#2f3131",
+                    "on-secondary-container": "#54647a",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#5f5e61",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#47464a",
+                    "secondary": "#505f76",
+                    "primary-fixed": "#e4e1e6",
+                    "surface-container-low": "#f3f3f3",
+                    "primary-container": "#1b1b1e",
+                    "surface-container": "#eeeeee",
+                    "on-error": "#ffffff",
+                    "outline": "#77767b",
+                    "on-tertiary-container": "#6b8a82",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f9f9f9",
+                    "primary-fixed-dim": "#c8c5ca",
+                    "secondary-container": "#d0e1fb",
+                    "tertiary": "#000000",
+                    "tertiary-fixed": "#c8eae0",
+                    "on-primary-fixed": "#1b1b1e",
+                    "on-background": "#1a1c1c",
+                    "surface-variant": "#e2e2e2",
+                    "on-surface-variant": "#47464b",
+                    "on-surface": "#1a1c1c",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#0b1c30",
+                    "on-primary-container": "#858387",
+                    "error": "#ba1a1a",
+                    "primary": "#000000",
+                    "tertiary-container": "#01201a",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "secondary-fixed": "#d3e4fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "unit": "4px",
+                    "gutter": "20px",
+                    "xs": "4px",
+                    "margin-desktop": "64px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "margin-mobile": "16px",
+                    "xl": "40px",
+                    "max-width": "1200px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "label-md": ["Inter"],
+                    "display": ["Manrope"],
+                    "label-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Manrope"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md">
+<!-- Sidebar (Desktop Only) -->
+<aside class="hidden md:flex flex-col py-lg px-md h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-surface z-50">
+<div class="mb-xl px-sm">
+<h1 class="font-display text-headline-md text-primary">Traveloop</h1>
+<p class="font-label-md text-on-surface-variant">Quiet Concierge</p>
+</div>
+<nav class="flex-1 space-y-unit">
+<!-- Dashboard Active -->
+<a class="flex items-center gap-md px-sm py-md transition-all text-primary font-bold border-r-2 border-primary hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-sm py-md transition-colors text-on-surface-variant hover:text-primary hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="explore_nearby">explore_nearby</span>
+<span class="font-label-md text-label-md">My Trips</span>
+</a>
+<a class="flex items-center gap-md px-sm py-md transition-colors text-on-surface-variant hover:text-primary hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md text-label-md">Discovery</span>
+</a>
+<a class="flex items-center gap-md px-sm py-md transition-colors text-on-surface-variant hover:text-primary hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Budget</span>
+</a>
+<a class="flex items-center gap-md px-sm py-md transition-colors text-on-surface-variant hover:text-primary hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="checklist">checklist</span>
+<span class="font-label-md text-label-md">Checklist</span>
+</a>
+<a class="flex items-center gap-md px-sm py-md transition-colors text-on-surface-variant hover:text-primary hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-md text-label-md">Journal</span>
+</a>
+</nav>
+<div class="mt-auto space-y-unit">
+<button class="w-full mb-lg py-md px-md bg-primary text-on-primary rounded-lg font-label-md flex items-center justify-center gap-sm active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                New Trip
+            </button>
+<a class="flex items-center gap-md px-sm py-md transition-colors text-on-surface-variant hover:text-primary hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-md px-sm py-md transition-colors text-on-surface-variant hover:text-primary hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 min-h-screen pb-xl">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Good morning, Alex.</h2>
+</div>
+<div class="flex items-center gap-lg">
+<button class="hidden md:block text-on-surface-variant hover:text-primary font-label-md transition-colors">Share Itinerary</button>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md text-label-md active:scale-95 transition-all">Create New Trip</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional and friendly headshot of a young man with a slight smile, set against a neutral, high-key studio background. The lighting is soft and even, highlighting a modern and minimalist aesthetic that aligns with a premium travel concierge service. The overall mood is approachable and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjPOdCTcmbeyIajGrGYNNXfr5dVyy5oRGou2IEY3rhjNf2GX08XcbFLLuo2mOEt1XNVHcuDlhZ3gErTdBss34sQfTzaRiyI9S-KtpZzW6jon924sOL4CBvWpNfBlxgoxpCHErqkkVzQaMSHQqEInJDtF2YDtFdCyDG_rSchbYPW-CpnexBDU4I5k3nwDkrrubCr0eX_Hhnif22ST3Hk1zhxFGwfRvAtjEmfQw9FHci-JpfMizHPtQp7_ft6n-qg4UJA3b5zGAhKKki"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="notifications">notifications</button>
+</div>
+</header>
+<!-- Content -->
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop mt-lg space-y-xl">
+<!-- Quick Stats Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-surface-container-low p-lg border border-outline-variant rounded-xl flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase">BUDGET REMAINING</span>
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-lg text-headline-lg text-primary">$4,250</span>
+<span class="font-label-md text-label-md text-on-surface-variant">USD</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-lg border border-outline-variant rounded-xl flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase">CITIES VISITED</span>
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-lg text-headline-lg text-primary">12</span>
+<span class="font-label-md text-label-md text-on-surface-variant">This Year</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-lg border border-outline-variant rounded-xl flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase">LOYALTY STATUS</span>
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-lg text-headline-lg text-primary">Platinum</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Tier</span>
+</div>
+</div>
+</section>
+<!-- Upcoming Trip Section -->
+<section>
+<div class="flex justify-between items-end mb-lg">
+<h3 class="font-headline-md text-headline-md text-primary">Upcoming Trip</h3>
+<button class="text-on-surface-variant hover:text-primary font-label-md transition-colors">See all</button>
+</div>
+<div class="relative w-full aspect-[21/9] md:aspect-[3/1] rounded-xl overflow-hidden border border-outline-variant group">
+<img alt="Tokyo Japan" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A cinematic, wide-angle view of a Tokyo cityscape at dusk, featuring the iconic Tokyo Tower glowing against a soft purple and deep blue twilight sky. The scene captures the organized beauty of the city with glowing street lights and a serene atmosphere. The image is clean, sharp, and uses a professional photographic style with high-key accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc6aUIx8rNQuew6vE8RYKa0jVBwwQYnNiUA6qBWQzwbLHLqVmlfBDCYkDCk3-VnFmFI0QLe6xNEQYjvF659PCm5vflk_dzQD5Tj9OtGp1VxHsb6dJUS6VG4X5nJ_tY3AMvZq1xqueEzYCEeWBuq-pxxeH0Vwe5wkz8qxnvrUzzpJUbb7qmeH67k1urw6kjefJv3a8nXAe4gCiYk__M7M62Vg5dpLT2ciDfsBSd7tbhFCl3qmamsClWFwzcwIeLXuIG5uInZYTPzZ3X"/>
+<div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent flex flex-col justify-end p-xl">
+<div class="max-w-md space-y-md">
+<div>
+<h4 class="font-display text-display text-white">Tokyo, Japan</h4>
+<p class="font-body-lg text-white/80">Oct 12 — Oct 24, 2023</p>
+</div>
+<div class="flex gap-md">
+<button class="bg-white text-black px-xl py-md rounded-lg font-label-md active:scale-95 transition-all">View Itinerary</button>
+<button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-xl py-md rounded-lg font-label-md hover:bg-white/20 active:scale-95 transition-all">Manage</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trip Overview Grid -->
+<section>
+<div class="flex justify-between items-end mb-lg">
+<h3 class="font-headline-md text-headline-md text-primary">Saved Inspirations</h3>
+<div class="flex gap-sm">
+<button class="p-sm rounded-full border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-sm rounded-full border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/3] rounded-xl overflow-hidden bg-surface-container border border-outline-variant mb-md">
+<img alt="Paris" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A minimalist architectural shot of the Eiffel Tower framed by elegant Parisian stone buildings under a soft, overcast morning sky. The lighting is bright and ethereal, emphasizing the neutral tones of the city. The composition is clean and focused, reflecting a premium and tranquil travel experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIgxSM55hBskcv4a1rL8Vv23xtEd1nZhyZt8WDFqAv_PihyX5WfwlzIUZta6bz3QgkRjG4yECTn5BrdmfL9o6AJP2ltfHdI8H_OIuY9QWLPJ4v09h07GRcd-fkGDW10EXmMI0YAU4mGjHxH8J0wPIMnQkWTV2Y5qqbD8vMqZEosbTOmbzrTXx5g4Yvsm-tXttz_655nZH34Ssd4uSWm0vJ2eUKBDlYHIaY6tA8Z6XmptX8wi9CJpmkTmNnjIVt_oznd5aUQzhbtSmv"/>
+</div>
+<div class="flex justify-between items-start px-xs">
+<div>
+<h5 class="font-headline-sm text-headline-sm text-primary">Paris, France</h5>
+<p class="font-body-sm text-on-surface-variant">Spring Getaway • 5 Days</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="bookmark">bookmark</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/3] rounded-xl overflow-hidden bg-surface-container border border-outline-variant mb-md">
+<img alt="Iceland" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A breathtaking landscape of an Icelandic glacier lagoon with crystal-clear ice chunks floating in deep blue water. The surrounding mountains are covered in light snow under a crisp, bright daylight. The scene is serene, minimalist, and captured with high clarity and a cool color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrcPC6MnO27LEcQoschyAFb-8JTeWU68BgBH7utTR-kKsB2PMSsF2s3kCRMrAzwDBWBuFyvIbfAx5UwZzzxJLqjEmurItsv766h5ei69onb9tYZNw98EGKFgBXjsz04huAQQwgebEjs7RD6nZNlHzYqvF9zpvCqnby6clTuj11Oyrm38tdhmgfffozlD-NVrk3-V6O4Vrjwu-scJgfUoyzLfOW8wTCmnaOGuDmsuF0b1_c474gqrXyhTr6ffZfb-rt20nGodbQ5Ijq"/>
+</div>
+<div class="flex justify-between items-start px-xs">
+<div>
+<h5 class="font-headline-sm text-headline-sm text-primary">Reykjavík, Iceland</h5>
+<p class="font-body-sm text-on-surface-variant">Winter Aurora • 7 Days</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="bookmark">bookmark</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/3] rounded-xl overflow-hidden bg-surface-container border border-outline-variant mb-md">
+<img alt="Bali" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A peaceful image of a luxury villa in Bali overlooking lush green rice terraces. The architecture is modern yet organic, with wooden textures and open spaces. The morning sun filters through tropical leaves, creating a warm and inviting atmosphere. The aesthetic is ultra-minimalist and calm." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaUGZvIfV3nnhkwxJebiLyBnFBOZt2weQNtNxyYzO3oDgaQwpC_hY7HG9oUyCeYon2gUCLTsGE2OuVYCrP7-R2AQ6pDWyXnwfFLykjsJkjWfGv4TzhSMTYQPIj9xk8QLvXkZrkNiMeGMYSgnsFyfLxuDRTGfKJ9GPAG3pHco6iewDOHgQopxdyqpRI7Jl-v3xy42ZkhXtwhegTxDbCZhN_B3tRwckzr59PCUPmvObCjXRHK293lSNm0RUGSsoouhSsCc-n4AgzuWO3"/>
+</div>
+<div class="flex justify-between items-start px-xs">
+<div>
+<h5 class="font-headline-sm text-headline-sm text-primary">Bali, Indonesia</h5>
+<p class="font-body-sm text-on-surface-variant">Wellness Retreat • 10 Days</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="bookmark">bookmark</span>
+</div>
+</div>
+<!-- Card 4 (New Entry State) -->
+<div class="aspect-[4/3] rounded-xl border-2 border-dashed border-outline-variant flex flex-col items-center justify-center gap-md group cursor-pointer hover:border-primary hover:bg-surface-container-low transition-all">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary">Plan New Trip</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-4 md:hidden bg-surface border-t border-outline-variant rounded-t-xl shadow-sm">
+<a class="flex flex-col items-center justify-center text-primary font-bold transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-label-sm text-label-sm">Trips</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-sm text-label-sm">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Budget</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+<span class="font-label-sm text-label-sm">Menu</span>
+</a>
+</nav>
+</body></html>

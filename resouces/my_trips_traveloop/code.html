@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e2e2e2;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#d3e4fe",
+                        "background": "#f9f9f9",
+                        "on-secondary-container": "#54647a",
+                        "secondary": "#505f76",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "outline": "#77767b",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#5f5e61",
+                        "on-surface": "#1a1c1c",
+                        "on-primary-fixed": "#1b1b1e",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dadada",
+                        "on-primary-fixed-variant": "#47464a",
+                        "tertiary-container": "#01201a",
+                        "on-tertiary-fixed": "#01201a",
+                        "secondary-container": "#d0e1fb",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "tertiary-fixed": "#c8eae0",
+                        "on-primary-container": "#858387",
+                        "primary-fixed": "#e4e1e6",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-bright": "#f9f9f9",
+                        "tertiary-fixed-dim": "#adcdc4",
+                        "tertiary": "#000000",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#2e4c45",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#6b8a82",
+                        "surface-variant": "#e2e2e2",
+                        "inverse-surface": "#2f3131",
+                        "inverse-primary": "#c8c5ca",
+                        "on-surface-variant": "#47464b",
+                        "primary-container": "#1b1b1e",
+                        "surface": "#f9f9f9",
+                        "outline-variant": "#c8c5cb",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eeeeee",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "primary-fixed-dim": "#c8c5ca",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-container-high": "#e8e8e8",
+                        "primary": "#000000",
+                        "on-background": "#1a1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "gutter": "20px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "max-width": "1200px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Manrope"],
+                        "display": ["Manrope"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary-fixed selection:text-primary">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar Anchor -->
+<aside class="hidden md:flex flex-col py-lg px-md h-full bg-surface border-r border-outline-variant w-64 shrink-0">
+<div class="mb-xl px-sm">
+<div class="flex items-center gap-sm mb-xs">
+<img alt="Traveloop Logo" class="w-8 h-8 rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTWNM7yS8iZ6DT6X4EnvhdVgkdWXAYq4a7Jl4Sh_YEXky-J0pQQcJQW0Apd1zG8_hRTKKnXADCr7-_RVWJIpa7GownCrEUZn9oAMNMGdAdJJY5GCOmi8E9FJleTh905wxvZGCPfc5tiuhHo1Yn4WPEXEHykQSEWgUHYG6xFn56bDAuqGNTKB6jwbM4VjKP0i8EfmGnQB5z-VXXswXhy2josmpVwFbhKyrZQ7KZjy6lro6LznEsdJeAemLBE9h6VsStA1pj1qaacPVV"/>
+<span class="font-display text-headline-sm text-primary">Traveloop</span>
+</div>
+<p class="text-label-sm text-on-surface-variant px-unit">Quiet Concierge</p>
+</div>
+<nav class="flex-1 space-y-unit">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-2 border-primary bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="explore_nearby" style="font-variation-settings: 'FILL' 1;">explore_nearby</span>
+<span class="font-label-md">My Trips</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="explore">explore</span>
+<span class="font-label-md">Discovery</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="payments">payments</span>
+<span class="font-label-md">Budget</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="checklist">checklist</span>
+<span class="font-label-md">Checklist</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="menu_book">menu_book</span>
+<span class="font-label-md">Journal</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg space-y-unit border-t border-outline-variant">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="account_circle">account_circle</span>
+<span class="font-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- TopNavBar Component -->
+<header class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
+<div class="flex flex-col">
+<h1 class="font-display text-headline-md text-primary">My Trips</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="hidden md:flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md hover:opacity-90 active:scale-95 transition-all">
+                        Create New Trip
+                    </button>
+</div>
+</header>
+<!-- Search & Filters -->
+<div class="px-margin-mobile md:px-margin-desktop mb-xl">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-lg">
+<!-- Minimal Search -->
+<div class="relative max-w-md w-full">
+<span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl py-sm pl-xl pr-md font-body-sm focus:outline-none focus:border-on-tertiary-container transition-colors" placeholder="Search your itineraries..." type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex items-center gap-sm overflow-x-auto pb-xs md:pb-0">
+<button class="px-lg py-xs bg-primary text-on-primary rounded-full font-label-sm whitespace-nowrap transition-all">Upcoming</button>
+<button class="px-lg py-xs bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-sm whitespace-nowrap hover:bg-surface-container-high transition-all">Past</button>
+<button class="px-lg py-xs bg-surface-container-low text-on-surface-variant border border-outline-variant rounded-full font-label-sm whitespace-nowrap hover:bg-surface-container-high transition-all">Drafts</button>
+</div>
+</div>
+</div>
+<!-- Trips Grid -->
+<div class="px-margin-mobile md:px-margin-desktop pb-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Trip Card 1 -->
+<div class="group cursor-pointer flex flex-col bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-sm transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100" data-alt="A panoramic, muted aerial view of London's skyline at dusk, showcasing the Thames River and the Shard in the distance. The lighting is soft and atmospheric, utilizing a cool blue and gray color palette that aligns with a minimalist, premium travel aesthetic. The mood is serene, sophisticated, and quiet, reflecting an essentialist design philosophy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-wnB5_KlJAOxQMoc6-2I_AThowf1Ho4-4Nx3POw11hVXxYhUUkOt0d7KGU8V4TAm7KNoLu7L_q7nOhYAZdXPaeUbu9DMTc8pWseL9xGcV2QMIoXo-TSzX0BWskSBRpfVgOZ6T3_KCBPpEcV55EL6F-gg4kBkJBDOu1c-t5XG0GWhe57KT_mL2fv4uzrnDeHejVof47bmAG79T4IXVCB_7nn6EraI-EfxnyHa2fIuJaKAMmC7JNOT2U6ODcAkTvupu5w42UtN-rBwL"/>
+<div class="absolute top-md right-md bg-surface/90 backdrop-blur-sm px-sm py-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-on-surface">5 Days</span>
+</div>
+</div>
+<div class="p-lg flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-primary">London &amp; Cotswolds</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</div>
+<p class="text-label-md text-on-surface-variant">Sep 12 — Sep 17, 2024</p>
+<div class="mt-md pt-md border-t border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="font-label-sm text-on-surface-variant">4 stops</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-on-tertiary-container font-semibold">$$$</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Trip Card 2 -->
+<div class="group cursor-pointer flex flex-col bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-sm transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100" data-alt="A serene, minimalist view of a luxury Kyoto ryokan garden at sunrise, with soft golden light filtering through maple leaves and moss-covered stones. The color palette is composed of organic greens, warm woods, and neutral stone grays, creating a tranquil and meditative atmosphere. The visual style is clean, airy, and premium, emphasizing quiet elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBlb2tACTWhiNJjpZdBM97CYMiOoudGexR3ZWtc1WsNjafFCjACC9fFBnAg82lZgm3jvmTR82EkxfdeO_Muo1-Z0YVkT5AdhQ_RRn1_w0s-a-DfgGg8TC_pOL7jc9z0Oh0RL1b7s85YdMHIWo4ao9N8PoNj-5KtD84R3TOId94ocSANGyiGd8aWCHxeEoFIaWsQysRx4LDtLWM6uhV7I6hIdvfVhyS8-VjtUuf9z6_64KMDKF7bfcmFX-HEZrDSTJMgZGPGfoKKwEu"/>
+<div class="absolute top-md right-md bg-surface/90 backdrop-blur-sm px-sm py-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-on-surface">12 Days</span>
+</div>
+</div>
+<div class="p-lg flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-primary">Kyoto Zen Retreat</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</div>
+<p class="text-label-md text-on-surface-variant">Oct 05 — Oct 17, 2024</p>
+<div class="mt-md pt-md border-t border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="font-label-sm text-on-surface-variant">8 stops</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-on-tertiary-container font-semibold">$$$$</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Trip Card 3 -->
+<div class="group cursor-pointer flex flex-col bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-sm transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100" data-alt="A minimalist photograph of a coastal Italian village on a cliffside, with pastel-colored buildings reflecting the soft, warm light of a late afternoon sun. The sea is a calm turquoise, and the sky is a clear, pale blue. The overall aesthetic is light-mode, airy, and high-end, focusing on architectural beauty and spaciousness with a muted saturation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgqygNYinQs2n4Rm2WaWxaPbErbF7SLl_6WUf0vP_vIp_fY62UsSVaQ3Oqs15jzI2608U93gXG5i-kheGXc9eaEL1SxgHqj-1654gVO-c3YzHnENZUQL2h6BkipeUk5hQMTzAsUkmDWlvRo2bqRu0MF1YYj3rzx9u7ivv20d78df7fWSVsUu_v4Nj3cZPwTog6gKC2uAtHWUODI-jCx_iP1k3rfKDV5uNW2PTI1xSJbdZqoQt8kEBCxvCmDUbKpReyIDMstyrxb6N6"/>
+<div class="absolute top-md right-md bg-surface/90 backdrop-blur-sm px-sm py-xs rounded-lg shadow-sm">
+<span class="font-label-sm text-on-surface">7 Days</span>
+</div>
+</div>
+<div class="p-lg flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-primary">Amalfi Coastline</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</div>
+<p class="text-label-md text-on-surface-variant">Jun 14 — Jun 21, 2025</p>
+<div class="mt-md pt-md border-t border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="font-label-sm text-on-surface-variant">3 stops</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-on-tertiary-container font-semibold">$$</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State Contextual Hint -->
+<div class="px-margin-mobile md:px-margin-desktop mb-xl">
+<div class="border border-dashed border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center bg-surface-container-low/30">
+<span class="material-symbols-outlined text-display text-outline-variant mb-md" data-icon="add_circle">add_circle</span>
+<h4 class="font-headline-sm text-on-surface-variant mb-xs">Looking for more adventure?</h4>
+<p class="text-body-sm text-on-surface-variant max-w-sm mb-lg">Start a new itinerary or explore our curated collections to find your next destination.</p>
+<button class="border border-primary text-primary px-lg py-sm rounded-full font-label-md hover:bg-surface-container-high transition-all">
+                        Browse Discovery
+                    </button>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar Anchor (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-4 md:hidden bg-surface border-t border-outline-variant rounded-t-xl shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="map" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-label-sm">Trips</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-sm">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm">Budget</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+<span class="font-label-sm">Menu</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Traveloop - Discovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#1b1b1e",
+                        "primary-container": "#1b1b1e",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed": "#01201a",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dadada",
+                        "on-primary-container": "#858387",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface": "#f9f9f9",
+                        "surface-tint": "#5f5e61",
+                        "inverse-primary": "#c8c5ca",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1a1c1c",
+                        "background": "#f9f9f9",
+                        "tertiary-container": "#01201a",
+                        "outline": "#77767b",
+                        "on-surface-variant": "#47464b",
+                        "tertiary": "#000000",
+                        "tertiary-fixed": "#c8eae0",
+                        "secondary-container": "#d0e1fb",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-high": "#e8e8e8",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#c8c5ca",
+                        "primary-fixed": "#e4e1e6",
+                        "primary": "#000000",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1a1c1c",
+                        "tertiary-fixed-dim": "#adcdc4",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "secondary": "#505f76",
+                        "surface-variant": "#e2e2e2",
+                        "outline-variant": "#c8c5cb",
+                        "on-tertiary-container": "#6b8a82",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eeeeee",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-container-low": "#f3f3f3",
+                        "on-tertiary-fixed-variant": "#2e4c45",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-primary-fixed-variant": "#47464a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "unit": "4px",
+                        "gutter": "20px",
+                        "margin-desktop": "64px",
+                        "max-width": "1200px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="flex min-h-screen">
+<!-- SideNavBar Component -->
+<aside class="hidden md:flex flex-col py-lg px-md h-full sticky top-0 left-0 h-screen w-64 bg-surface border-r border-outline-variant z-50">
+<div class="mb-xl px-sm">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="travel">travel</span>
+</div>
+<div>
+<h1 class="font-display text-headline-sm text-primary">Traveloop</h1>
+<p class="font-label-sm text-on-surface-variant">Quiet Concierge</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="explore_nearby">explore_nearby</span>
+<span class="font-label-md">My Trips</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-primary font-bold border-r-2 border-primary bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md">Discovery</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-md">Budget</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="checklist">checklist</span>
+<span class="font-label-md">Checklist</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-md">Journal</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-xs pt-lg border-t border-outline-variant">
+<button class="mb-md w-full bg-primary text-on-primary py-md rounded-xl font-label-md transition-all active:scale-95">
+                    New Trip
+                </button>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 min-w-0 bg-background overflow-y-auto pb-32 md:pb-lg">
+<!-- TopNavBar Component -->
+<header class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
+<div class="md:hidden flex items-center">
+<h2 class="font-display text-headline-sm text-primary">Traveloop</h2>
+</div>
+<div class="hidden md:block">
+<h2 class="font-headline-sm text-primary">Discovery</h2>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hidden md:block px-lg py-sm border border-outline text-primary rounded-full font-label-md hover:bg-surface-container transition-colors">
+                        Share Itinerary
+                    </button>
+<button class="px-lg py-sm bg-primary text-on-primary rounded-full font-label-md active:scale-95 transition-all">
+                        Create New Trip
+                    </button>
+</div>
+</header>
+<!-- Discovery Canvas -->
+<div class="px-margin-mobile md:px-margin-desktop py-xl max-w-max-width mx-auto">
+<!-- Filters/Categories -->
+<section class="mb-xl">
+<div class="flex gap-md overflow-x-auto no-scrollbar pb-sm">
+<button class="px-lg py-sm bg-primary text-on-primary rounded-full font-label-md whitespace-nowrap">All Experiences</button>
+<button class="px-lg py-sm border border-outline-variant text-on-surface-variant rounded-full font-label-md whitespace-nowrap hover:bg-surface-container transition-colors">Gastronomy</button>
+<button class="px-lg py-sm border border-outline-variant text-on-surface-variant rounded-full font-label-md whitespace-nowrap hover:bg-surface-container transition-colors">Historical Sites</button>
+<button class="px-lg py-sm border border-outline-variant text-on-surface-variant rounded-full font-label-md whitespace-nowrap hover:bg-surface-container transition-colors">Outdoor Adventure</button>
+<button class="px-lg py-sm border border-outline-variant text-on-surface-variant rounded-full font-label-md whitespace-nowrap hover:bg-surface-container transition-colors">Local Markets</button>
+<button class="px-lg py-sm border border-outline-variant text-on-surface-variant rounded-full font-label-md whitespace-nowrap hover:bg-surface-container transition-colors">Hidden Gems</button>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Feature Card (Large) -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-xl border border-outline-variant aspect-[16/9] md:aspect-auto md:h-[400px]">
+<img class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" data-alt="A moody, high-contrast monochrome photograph of a classic cobblestone street in a European old town at dawn. Soft morning mist clings to the ancient architecture, and a single warm lantern light creates a subtle focal point. The composition is clean and minimalist, emphasizing the texture of the stones and the quiet, serene atmosphere of a city before it wakes up." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUeO994MjX1QPokl_6cRnn50a1ecj5Px6Ze96XaDVVtaWmsRA2haSpdSUVw6yX2Hujy4_malagr_31H3JeTd0DmA_C9rm-6xntfCQWt5sQ-Sc0ZfXf9qILp4XOh2Gqqnu1RnqJBTywN6GzWr1BRZtbjwFYY1M-QNBMzYeqW_OTpwz7eyLRzj0P6OoSL5WH-bjA4K95yHyRw8VovdxCLK2oLQpDCZ81oyYdJklgz0bPlVZVzUGI55mkWjzS3cMa7DsdRDHrztjfAzTb"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-lg w-full">
+<span class="inline-block px-sm py-xs bg-white/20 backdrop-blur-md text-white text-label-sm rounded mb-sm">FEATURED SIGHTSEEING</span>
+<h3 class="text-white font-headline-lg mb-xs">Morning in the Old Quarter</h3>
+<p class="text-white/80 font-body-md max-w-md">Discover the silent stories of the city through a curated sunrise walking tour.</p>
+</div>
+</div>
+<!-- Side Card 1 -->
+<div class="md:col-span-4 group flex flex-col border border-outline-variant rounded-xl overflow-hidden bg-surface-container-lowest">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist overhead shot of a single, artisan-crafted ceramic plate with a perfectly presented, modern culinary dish. The scene is lit with soft, natural side-lighting, creating elegant shadows on a neutral, textured stone surface. The aesthetic is sophisticated and clean, focusing on the artistry of high-end gastronomy within a monochrome color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJlVl-lKBcmu1W9e3FF0WSPntvSXXXbDdZAvNMCjM5MnSgIUZ2dvOLzECuY-juWlYrZ1DVP0494sz7RvrP_wu3kz8FAh3RBWCievWkFgZ_Yx70UNMXsspmn6O9ATmuRIqaYksPdTa2x1T_p7_BdYhc3CEbJ-LsBO35dTZEUJp4mip7N2Xr0MCzu2B0W_NoPFBmYka6Y0koNTw1RtCniSgejekxfusIh-rJ2RPYuEpMUqY8z5SV7Ji0wQ7iNo4NcnPDeoVOttPQxA1d"/>
+</div>
+<div class="p-md flex flex-col flex-1">
+<div class="flex justify-between items-start mb-xs">
+<h4 class="font-headline-sm">Omakase Experience</h4>
+<span class="material-symbols-outlined text-primary" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface-variant font-body-sm mb-lg">A 12-course minimalist journey through seasonal flavors and traditional techniques.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-label-md text-primary">$180 / person</span>
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Adventure Grid -->
+<div class="md:col-span-4 group border border-outline-variant rounded-xl overflow-hidden bg-surface-container-low transition-all hover:bg-white">
+<div class="p-md">
+<div class="w-12 h-12 rounded-lg bg-black flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-white" data-icon="hiking">hiking</span>
+</div>
+<h4 class="font-headline-sm mb-xs">Nordic Trail Peak</h4>
+<p class="text-on-surface-variant font-body-sm mb-lg">A challenging 6-hour trek through glacial valleys and basalt cliffs.</p>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-dim"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-dim"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-dim flex items-center justify-center text-[10px] font-bold">+12</div>
+</div>
+</div>
+</div>
+<!-- Gastronomy Grid -->
+<div class="md:col-span-4 border border-outline-variant rounded-xl p-md flex flex-col justify-center bg-surface-container-lowest">
+<h4 class="font-headline-sm mb-sm">Hidden Courtyards</h4>
+<div class="space-y-md">
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded bg-surface-dim overflow-hidden grayscale">
+<img class="w-full h-full object-cover" data-alt="Close up of a minimalist coffee shop interior with light oak wood, white walls, and a single black pendant lamp." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIvDrSTzCvBzzE3EqvyNrGxW5VPR1-lGiBmksGm9AJkzY7M6nvgyKXUpWrxyYYxE6C4Nqki_BaB2EtszsbyfQFUQs5Z5CtGqrNLqiSIzLPK8fKIR3T4XkH96T5TerOTCklPyRhwVSlQav7Axz9B1_XcBiGswoOpwuQfu3JrqPJSqncITurLs1Fy18xZAEu9If3BhGWFRp5v2dkCu3g7L2Uctbp9Flv2bmzQLsIjNUTzMbsaidhURJqgOKkygA1SGM4sXQQjGLiEU1M"/>
+</div>
+<div>
+<p class="font-label-md">The Monolith Cafe</p>
+<p class="text-on-surface-variant text-label-sm">Quiet Coffee • 0.2km</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded bg-surface-dim overflow-hidden grayscale">
+<img class="w-full h-full object-cover" data-alt="Minimalist interior of a high-end restaurant with clean lines and moody lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTpN3ejf25jsud4ZhhDbzQkd_hfYsAaxlF3-8XJVUUyvfcy-_IS1r7mXmr2Ik2dWpiuyHEdSm1dqyAt8aTmrKqNqseFc0Jli4lKIK-tMps113DACbS4TnZZe6RXee18iETDJqjxpVl5lstArWG3FPGG1jFdLdXqpvZcafogHvavLfkTnUd7IJN1pB9wLXC8HSS21YCeQVdrv9-O5BhNIQR2hr_DOMmlsEZFENYYe1cztQIK2-NfHD1BZyShaAogjaUYWsSHzDEWN9Q"/>
+</div>
+<div>
+<p class="font-label-md">Ember Kitchen</p>
+<p class="text-on-surface-variant text-label-sm">Fine Dining • 1.5km</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Map/Location Integration -->
+<div class="md:col-span-4 relative rounded-xl overflow-hidden border border-outline-variant h-64 md:h-auto">
+<div class="absolute inset-0 bg-surface-container-high flex items-center justify-center">
+<!-- Mock Map -->
+<div class="absolute inset-0 opacity-40 mix-blend-multiply" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBo_72HJ9KO-y5zkUbor2nGVk_g_4PRmmIGWUuEO-ZcXHfpxRdyiMuRffXQgvJMV3KBdQK-LE8wmKIsuZ74iCEco79jkoaUMVYB9M8HgDKUsNEtUbPcnLK2DiNRM8AsKeuHvQUSfNuDfOZbBt7yI0jsHd1_Y5fZ3GarOM80yv2Da1U0_II6lYr2bHl7YjyhOf5zgAH9W2yHufKFt15AyhDjsbA1N7oMWFb8jOUk4B1rlJTluOVAFVitMjqNLhk6vAY0_pkShU7oLH2r'); background-size: cover;"></div>
+<div class="relative z-10 p-md bg-white rounded-lg shadow-sm text-center">
+<span class="material-symbols-outlined text-primary mb-xs" data-icon="location_on">location_on</span>
+<p class="font-label-md">Explore Nearby</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Detail Overlay (Active State Emulation) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-md md:p-xl bg-black/20 backdrop-blur-sm">
+<div class="bg-surface w-full max-w-4xl h-full max-h-[870px] rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row relative">
+<!-- Close Button -->
+<button class="absolute top-md right-md z-20 w-10 h-10 rounded-full bg-white/80 backdrop-blur shadow-sm flex items-center justify-center hover:bg-white transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<!-- Gallery Side -->
+<div class="w-full md:w-1/2 h-64 md:h-auto relative">
+<img class="w-full h-full object-cover grayscale" data-alt="A wide-angle landscape photograph of a minimalist temple structure perched on a cliffside, overlooking a calm sea. The lighting is diffused and ethereal, highlighting the clean architectural lines against the soft grey sky. The scene evokes a deep sense of peace and contemplation, using a restricted palette of silvers, greys, and blacks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCHyv47hIHvqsQ2ue8yzljkNPjgxpxvdMH3IBswD1iK019a4vuP0GLcGABw3LHU-N8rW_yl520jh5xYPhxcL-9n8hpexGSFC7aaVfSYkKAfr68S9eIIckrQYdUaPOcktXzI_rZv2aXPoOuhjZzGX-TmkGzTNHZgn2qVs5-_loh3SxQ2yH3TLOS-pM4FU9dxkZFot3W0VCt83fXqTrCh3a9FT-O-s7eASeJZOCb4Y34NYk0YNL5w-uMAQQkpp3ni4VpMyM8qK4Yr7lm"/>
+<div class="absolute bottom-md left-md flex gap-sm">
+<div class="w-12 h-12 rounded border border-white/50 overflow-hidden">
+<img class="w-full h-full object-cover grayscale" data-alt="Monochrome detail of Parisian architecture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu-OBTo67LLRVEskZ6LGsNNvgHVhxtzIivNUb1WVC1I3aRkOwRkS_947t9a51iglwHw3S84XxvrZwXmsYH33r-uOq_zVOOTV74Jw7C2wPneGksbT_ezurUdsSRxF-z4Osr6qQ13drNaZpRwGZQTgOLSq3jrIVkTltMG6VvrmcMCZjuErlpXfO9RarQD-w3GlrqyEwbbAe-N5fg2VukDNdvt2jfb-NTKsZ--QIUIfE63QtXoqMWXrZ_1lZgtlP0IrprdsUfwi-NYUmy"/>
+</div>
+<div class="w-12 h-12 rounded border border-white/50 overflow-hidden">
+<img class="w-full h-full object-cover grayscale" data-alt="Detail of a stone gargoyle in soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6K3mEwzhWPlqfgqY1iwlUkrCIwgRS8QsWlKnneR5gEFR_tJEGMvVDFL2F4V1JcC_8JyiVosLXxaT8JthsnVdCQiHM4SKJ3ATArswOkycVNAFosyH5K_LeFeQvAd-yL_Lj0_huOznnddhEnB7Je3e6exuwUgfwrZ5PQNKozNrgSScY0gon_YdWIy85288BMEIPh4LIfYGk9FlZmVEyGB29Roc-GkZqggSFXSA4pbIaDLIRyYq3zqUIxp3ydUUHK1VvbqAPE72zUPQo"/>
+</div>
+</div>
+</div>
+<!-- Content Side -->
+<div class="w-full md:w-1/2 p-lg md:p-xl flex flex-col overflow-y-auto">
+<div class="mb-lg">
+<span class="font-label-sm text-primary-container tracking-widest uppercase mb-xs block">SIGHTSEEING • PRIVATE TOUR</span>
+<h2 class="font-headline-lg mb-md">Architecture &amp; Silence</h2>
+<p class="text-on-surface-variant font-body-md leading-relaxed mb-lg">
+                                Experience the city's modernist landmarks through a lens of tranquility. This curated journey avoids the crowds, focusing on the interplay of shadow, light, and geometry in the city's most iconic brutalist and minimalist structures.
+                            </p>
+<div class="grid grid-cols-2 gap-md mb-lg">
+<div class="p-md rounded-xl bg-surface-container-low border border-outline-variant">
+<p class="text-label-sm text-on-surface-variant mb-xs">DURATION</p>
+<p class="font-label-md">3.5 Hours</p>
+</div>
+<div class="p-md rounded-xl bg-surface-container-low border border-outline-variant">
+<p class="text-label-sm text-on-surface-variant mb-xs">GROUP SIZE</p>
+<p class="font-label-md">Max 4 People</p>
+</div>
+</div>
+</div>
+<div class="mt-auto space-y-md">
+<button class="w-full py-md bg-primary text-on-primary rounded-xl font-label-md hover:opacity-90 transition-opacity flex items-center justify-center gap-md">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+                                Add to Itinerary
+                            </button>
+<button class="w-full py-md border border-outline text-primary rounded-xl font-label-md hover:bg-surface-container transition-colors flex items-center justify-center gap-md">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+                                Save to Wishlist
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar Component -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-4 md:hidden bg-surface border-t border-outline-variant rounded-t-xl shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-label-sm">Trips</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="search" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-sm">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm">Budget</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+<span class="font-label-sm">Menu</span>
+</a>
+</nav>
+</body></html>

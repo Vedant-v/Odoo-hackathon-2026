@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .itinerary-line::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 24px;
+            bottom: 0;
+            width: 1px;
+            background-color: #c8c5cb;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#1b1b1e",
+                        "primary-container": "#1b1b1e",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed": "#01201a",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dadada",
+                        "on-primary-container": "#858387",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface": "#f9f9f9",
+                        "surface-tint": "#5f5e61",
+                        "inverse-primary": "#c8c5ca",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1a1c1c",
+                        "background": "#f9f9f9",
+                        "tertiary-container": "#01201a",
+                        "outline": "#77767b",
+                        "on-surface-variant": "#47464b",
+                        "tertiary": "#000000",
+                        "tertiary-fixed": "#c8eae0",
+                        "secondary-container": "#d0e1fb",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-high": "#e8e8e8",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#c8c5ca",
+                        "primary-fixed": "#e4e1e6",
+                        "primary": "#000000",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1a1c1c",
+                        "tertiary-fixed-dim": "#adcdc4",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "secondary": "#505f76",
+                        "surface-variant": "#e2e2e2",
+                        "outline-variant": "#c8c5cb",
+                        "on-tertiary-container": "#6b8a82",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eeeeee",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-container-low": "#f3f3f3",
+                        "on-tertiary-fixed-variant": "#2e4c45",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-primary-fixed-variant": "#47464a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "unit": "4px",
+                        "gutter": "20px",
+                        "margin-desktop": "64px",
+                        "max-width": "1200px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<header class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-sm">
+<span class="font-display text-headline-sm text-primary">Traveloop</span>
+<span class="hidden md:inline-block h-4 w-px bg-outline-variant mx-xs"></span>
+<span class="hidden md:inline-block font-label-md text-on-surface-variant">Quiet Concierge</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="flex items-center gap-xs font-label-md text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+<span class="hidden sm:inline">Share Itinerary</span>
+</button>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md hover:opacity-90 active:scale-95 transition-all">
+                Copy Trip
+            </button>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<section class="mb-xl">
+<div class="relative h-[400px] w-full rounded-xl overflow-hidden mb-lg">
+<img class="w-full h-full object-cover" data-alt="A wide, cinematic shot of the Parisian skyline during the golden hour, featuring the Eiffel Tower in the distance. The lighting is warm and ethereal, casting long shadows across classic Haussmann buildings. The image has a clean, high-end travel photography aesthetic with a focus on minimalist composition and a serene, luxurious mood. Neutral tones and soft focus create a tranquil, professional ambiance consistent with a premium concierge service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsIhy4W1edJyWY0NP-MLR6WpiFu-hxOMlYkuHAWKx125NevayB5WU_DQcp4rlIze5FgVw_7_D1wDo49TvaNMGQUAE6YAG12p7JWNDtSpiaf_hc0rdPVpeXRjT6xn6lD_ouUXwtHdwqB8033fcEIPoSHolqMOXxXWozTU-xS_2nqNq2rCkDplKlsUNy9JfifAxD8vCSGymVG81zCev7RFYltAD9EMnvEjbtvHrNq3-4Jz57P5cyjP9zuep7HveGWr8HcVX3MQqcVJyI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-lg">
+<span class="font-label-sm text-white/80 tracking-widest uppercase mb-xs">7 Days in Paris &amp; Lyon</span>
+<h1 class="font-display text-display text-white mb-sm">Autumn in the Heart of France</h1>
+<div class="flex items-center gap-md text-white/90 font-label-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="calendar_today">calendar_today</span>
+                            Oct 12 — Oct 18
+                        </div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="group">group</span>
+                            2 Travelers
+                        </div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl items-start">
+<div class="md:col-span-2">
+<p class="font-body-lg text-on-surface-variant leading-relaxed">
+                        A curated journey through the sensory delights of France. From the tucked-away cafes of Le Marais to the silk-weaving workshops of Lyon, this itinerary focuses on slow travel, authentic craftsmanship, and the quiet luxury of the French countryside.
+                    </p>
+</div>
+<div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant/30">
+<h3 class="font-headline-sm mb-md">Trip Overview</h3>
+<ul class="space-y-md">
+<li class="flex justify-between font-label-md">
+<span class="text-on-surface-variant">Estimated Budget</span>
+<span class="text-primary">€4,200</span>
+</li>
+<li class="flex justify-between font-label-md">
+<span class="text-on-surface-variant">Pace</span>
+<span class="text-primary">Relaxed</span>
+</li>
+<li class="flex justify-between font-label-md">
+<span class="text-on-surface-variant">Main Mode</span>
+<span class="text-primary">TGV First Class</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="max-w-3xl">
+<div class="flex items-center justify-between mb-xl">
+<h2 class="font-display text-headline-lg">Itinerary</h2>
+<div class="flex gap-xs">
+<button class="px-md py-xs rounded-full border border-primary font-label-md text-primary">All Days</button>
+<button class="px-md py-xs rounded-full border border-outline-variant font-label-md text-on-surface-variant hover:border-primary transition-colors">By Type</button>
+</div>
+</div>
+<div class="space-y-xl">
+<div class="relative itinerary-line pb-xl">
+<div class="flex items-start gap-lg">
+<div class="z-10 bg-primary w-2 h-2 rounded-full mt-2 ring-4 ring-surface"></div>
+<div class="flex-1">
+<div class="mb-lg">
+<span class="font-label-sm text-on-surface-variant tracking-wider uppercase">Day 1 — Oct 12</span>
+<h3 class="font-headline-md mt-xs">Arrival &amp; Le Marais Wandering</h3>
+</div>
+<div class="grid grid-cols-1 gap-md">
+<div class="group relative bg-white border border-outline-variant rounded-xl p-md flex gap-md hover:bg-surface-container-low transition-colors duration-200">
+<div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up of a boutique hotel entrance in Paris with wrought-iron balconies and elegant gold lettering on a black awning. The morning sun casts soft, dappled shadows across the stone facade, creating an inviting and sophisticated atmosphere. The color palette is composed of creamy limestone, charcoal blacks, and touches of polished brass, maintaining a high-end, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtyuG0KsqKCN4VvB5mpj2_O3hkxio7yexdYhvOnpEHnTrRyMpTXTLNse04nNjft-R528JVOheN4neVeRt-J6lLlS0yJo6yxZn4nBmr7XXVniuCPzRHIgzCSh5MBlpKCNUz2aeG49-HCWttb8catxH01qLUnmHpPcs_SEP1qxtzWsiHj-p_okxNV5cDbAi1a3ROHTwcIp4rNbW1wz8SygAodM5bOLzpseg3DuIRwpgdXEnxD7n8eiJGsvlQKRa22St8klx-y3TF8u1T"/>
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-label-sm text-secondary uppercase mb-xs">Check-in • 14:00</span>
+<h4 class="font-headline-sm text-primary mb-1">Hotel Pavillon de la Reine</h4>
+<p class="text-on-surface-variant font-body-sm">A hidden gem on Place des Vosges.</p>
+</div>
+<span class="material-symbols-outlined absolute top-md right-md text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="arrow_outward">arrow_outward</span>
+</div>
+<div class="group relative bg-white border border-outline-variant rounded-xl p-md flex gap-md hover:bg-surface-container-low transition-colors duration-200">
+<div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Interior of a minimalist Parisian cafe featuring clean white marble counters, light oak furniture, and large windows that let in abundant natural light. The space is uncluttered, with a single vase of wildflowers on a table. The mood is calm and contemplative, reflecting a quiet concierge style. High-key lighting highlights the soft textures and neutral color palette of the cafe interior." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFrk4UWt0rexHNDr3uSHGNDKFDi-2a0tvlXAL4N35lMdugfFCoIvgS-HpN5oZ732Ju7R0kXPnTplgOsUxbxTK9GXA6MlCSxpYbcmBXGum32kFnQh6iMbiQKXaQ6z-9HL0iMMhH6JBoTk6sfksgaNZ8DVbsVvz3rPiGSD4xT3w-iVJjjC7NmLexlLq5fR2tlM95ZBIp6s0F0joNyGb0Y3qZ9RvcqZ7UNuvczr9W99LE5kwvuh1DPrwp-Yyc-7AO8Z7dWCIWl1EGRjoJ"/>
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-label-sm text-secondary uppercase mb-xs">Activity • 16:30</span>
+<h4 class="font-headline-sm text-primary mb-1">Coffee at Boot Café</h4>
+<p class="text-on-surface-variant font-body-sm">The smallest cafe in Paris, formerly a cobbler shop.</p>
+</div>
+<span class="material-symbols-outlined absolute top-md right-md text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="arrow_outward">arrow_outward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative itinerary-line pb-xl">
+<div class="flex items-start gap-lg">
+<div class="z-10 bg-primary w-2 h-2 rounded-full mt-2 ring-4 ring-surface"></div>
+<div class="flex-1">
+<div class="mb-lg">
+<span class="font-label-sm text-on-surface-variant tracking-wider uppercase">Day 2 — Oct 13</span>
+<h3 class="font-headline-md mt-xs">Artistic Immersion</h3>
+</div>
+<div class="grid grid-cols-1 gap-md">
+<div class="group relative bg-white border border-outline-variant rounded-xl p-md flex gap-md hover:bg-surface-container-low transition-colors duration-200">
+<div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A serene view inside the Musee de l'Orangerie, showing Claude Monet's Water Lilies murals on a curved white wall. The room is filled with soft, diffused daylight from the ceiling, creating a meditative and peaceful atmosphere. The minimalist architecture of the gallery emphasizes the scale and color of the artwork. The visual style is light-mode, airy, and focused on essentialist beauty." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZU77m7l7vA8PO58vXFkEMtDxHTjeCmPjEzymCw_yGaSs1p6d9ZVayhWY3GoiFeEZtpdK1_hB8jAcvI9mdZ68tkvqORteSj7oVUfQ159WexI_HD1usHIir4Abc4z-7s1Ehw6m_RIzlb4FlBmEPSs_oNWi9etYdGPb2zlGRM8BeJLhX-XM7E-uBC-eELgKu-iZVDVpeHWcxSSTBZ4sFAXDqEzRqawZw5hoJUGh-AcCpWIox2_ukeJkAFz4SbVrmqvARmEbNc85uIBkm"/>
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-label-sm text-secondary uppercase mb-xs">Museum • 10:00</span>
+<h4 class="font-headline-sm text-primary mb-1">Musée de l'Orangerie</h4>
+<p class="text-on-surface-variant font-body-sm">Private viewing of Monet's Water Lilies.</p>
+</div>
+<span class="material-symbols-outlined absolute top-md right-md text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="arrow_outward">arrow_outward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative itinerary-line pb-xl">
+<div class="flex items-start gap-lg">
+<div class="z-10 bg-outline-variant w-2 h-2 rounded-full mt-2 ring-4 ring-surface"></div>
+<div class="flex-1">
+<div class="mb-lg opacity-60">
+<span class="font-label-sm text-on-surface-variant tracking-wider uppercase">Day 3 — Oct 14</span>
+<h3 class="font-headline-md mt-xs">Travel to Lyon</h3>
+</div>
+<div class="bg-surface-container border border-dashed border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-on-surface-variant italic">
+<span class="material-symbols-outlined text-[32px] mb-sm" data-icon="train">train</span>
+<p>TGV high-speed rail journey through the French countryside.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="mt-xl py-xl bg-surface border-t border-outline-variant">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-center gap-lg">
+<div class="text-center md:text-left">
+<h4 class="font-headline-sm mb-xs">Loved this trip?</h4>
+<p class="text-on-surface-variant font-body-sm">You can copy this entire itinerary to your own Traveloop account.</p>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-primary text-on-primary px-xl py-md rounded-full font-label-md flex items-center gap-sm hover:opacity-90 transition-all">
+<span class="material-symbols-outlined" data-icon="content_copy">content_copy</span>
+                        Copy to My Trips
+                    </button>
+<div class="flex items-center gap-sm">
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="mail">mail</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="ios_share">ios_share</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-xl pt-lg border-t border-outline-variant/30 flex justify-between items-center text-on-surface-variant font-label-sm">
+<span>Created with Traveloop</span>
+<div class="flex gap-md">
+<a class="hover:text-primary" href="#">Privacy</a>
+<a class="hover:text-primary" href="#">Terms</a>
+<a class="hover:text-primary" href="#">Report Trip</a>
+</div>
+</div>
+</div>
+</footer>
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 md:hidden bg-on-primary-fixed text-white px-lg py-sm rounded-full shadow-xl flex items-center gap-md">
+<button class="flex flex-col items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="map">map</span>
+<span class="text-[10px] font-label-sm">Map View</span>
+</button>
+<div class="w-px h-6 bg-white/20"></div>
+<button class="flex flex-col items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="content_copy">content_copy</span>
+<span class="text-[10px] font-label-sm">Copy Trip</span>
+</button>
+</nav>
+</body></html>

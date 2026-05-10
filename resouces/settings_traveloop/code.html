@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#1b1b1e",
+                    "primary-container": "#1b1b1e",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#54647a",
+                    "on-tertiary-fixed": "#01201a",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dadada",
+                    "on-primary-container": "#858387",
+                    "secondary-fixed": "#d3e4fe",
+                    "surface": "#f9f9f9",
+                    "surface-tint": "#5f5e61",
+                    "inverse-primary": "#c8c5ca",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-background": "#1a1c1c",
+                    "background": "#f9f9f9",
+                    "tertiary-container": "#01201a",
+                    "outline": "#77767b",
+                    "on-surface-variant": "#47464b",
+                    "tertiary": "#000000",
+                    "tertiary-fixed": "#c8eae0",
+                    "secondary-container": "#d0e1fb",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#c8c5ca",
+                    "primary-fixed": "#e4e1e6",
+                    "primary": "#000000",
+                    "error": "#ba1a1a",
+                    "on-surface": "#1a1c1c",
+                    "tertiary-fixed-dim": "#adcdc4",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#0b1c30",
+                    "secondary": "#505f76",
+                    "surface-variant": "#e2e2e2",
+                    "outline-variant": "#c8c5cb",
+                    "on-tertiary-container": "#6b8a82",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eeeeee",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "surface-container-low": "#f3f3f3",
+                    "on-tertiary-fixed-variant": "#2e4c45",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-primary-fixed-variant": "#47464a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "xl": "40px",
+                    "unit": "4px",
+                    "gutter": "20px",
+                    "margin-desktop": "64px",
+                    "max-width": "1200px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "headline-sm": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+        }
+        .sidebar-active {
+            border-right: 2px solid #000000;
+            font-weight: 700;
+            color: #000000;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col py-lg px-md h-screen w-64 fixed left-0 bg-surface border-r border-outline-variant">
+<div class="mb-xl px-sm">
+<h1 class="font-display text-headline-md text-primary">Traveloop</h1>
+<p class="font-label-md text-on-surface-variant">Quiet Concierge</p>
+</div>
+<nav class="flex-1 space-y-sm">
+<a class="flex items-center gap-md p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">explore_nearby</span>
+<span class="font-label-md">My Trips</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-md">Discovery</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md">Budget</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span class="font-label-md">Checklist</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md">Journal</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-outline-variant space-y-sm">
+<a class="flex items-center gap-md p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded-lg text-primary font-bold border-r-2 border-primary bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+<button class="w-full mt-lg bg-primary text-on-primary py-sm rounded-lg font-label-md active:scale-95 transition-all">
+                    New Trip
+                </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 pb-24 md:pb-0">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
+<div class="md:hidden">
+<h1 class="font-display text-headline-sm text-primary">Traveloop</h1>
+</div>
+<div class="hidden md:block">
+<h2 class="font-headline-sm text-primary">Settings</h2>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img alt="User profile" data-alt="A professional studio portrait of a woman with a serene expression, captured with soft, natural high-key lighting that emphasizes a clean and modern aesthetic. The background is a solid, neutral light grey, maintaining an essentialist and premium feel consistent with a sophisticated travel concierge application. The image is crisp, focusing on clarity and professional elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC6Km4wfRPlf3N_ejsTQo_alVhVUl5ASJgS7OdW8W1imgJEuQqSL8ijGJ-mB5ZFV4prD0uzBrAEvz6iQkHpZfcqq4RAiE1ZWdTuYMoF8aKfRe-tT3PGzy-gGi1SAolUzvvwtY4ODPYGuDqQBYiauHa28wXYTsh9BHv802fkuLaQfmkucRtaJOjRIzXNa90toR2eG1JdepIlAhrXc_ZR-Efdw5HkltmGqoX2Gy34OUCrSQIwVJbqv89Kwu1PIAdNn__-KNMOCj58pbM"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Tabbed Layout -->
+<div class="flex flex-col gap-xl">
+<!-- Profile Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-lg items-start">
+<div class="md:col-span-4">
+<h3 class="font-headline-sm text-primary mb-xs">Profile Information</h3>
+<p class="font-body-sm text-on-surface-variant">Update your personal details and how you appear on the platform.</p>
+</div>
+<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+<div class="flex items-center gap-lg mb-lg">
+<div class="relative group">
+<img class="h-20 w-20 rounded-full border border-outline-variant object-cover" data-alt="A close-up professional headshot for a user profile, showcasing a person with a welcoming smile and calm demeanor. The lighting is diffused and bright, creating a clean light-mode atmosphere. The styling is minimalist, with a neutral background that avoids clutter, reflecting the essentialist design philosophy of a luxury travel planning interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvP3GOX5y8Abv9DQRdAZqbE2DvDe32V2uZNOvuvUVH7q6gF6OeuPPp19Xzw4lm5lrrqNfgKz_9OrDDLn6o8mkUaIrhaJmtYTU6XwrosBQk_RDPyqsBCB3VghoUTNI_yle5qr3xh4p1IU7m5d_jxC3KbPtK5r-yF1wTZzvtmmZENuHLRtzvOI4jFjWFOmqQwtTYxmSjon6gXAsDcDY1-qs1iQIw2e3RYz3rM5fMDPEPEWWcQ9ZXNXR4O_KePIgj-I2nSFz880J1FPdB"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white">photo_camera</span>
+</div>
+</div>
+<div>
+<button class="border border-outline-variant px-md py-sm rounded-lg font-label-md hover:bg-surface-container-low transition-colors">Change Photo</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant">FULL NAME</label>
+<input class="w-full bg-transparent border border-outline-variant rounded-lg px-md py-sm focus:ring-1 focus:ring-primary focus:border-primary transition-all font-body-md" type="text" value="Elena Rodriguez"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant">EMAIL ADDRESS</label>
+<input class="w-full bg-transparent border border-outline-variant rounded-lg px-md py-sm focus:ring-1 focus:ring-primary focus:border-primary transition-all font-body-md" type="email" value="elena.r@example.com"/>
+</div>
+<div class="md:col-span-2 space-y-xs">
+<label class="font-label-sm text-on-surface-variant">BIO</label>
+<textarea class="w-full bg-transparent border border-outline-variant rounded-lg px-md py-sm focus:ring-1 focus:ring-primary focus:border-primary transition-all font-body-md" rows="3">Lover of slow travel, architectural marvels, and hidden espresso bars. Planning a Nordic escape for 2024.</textarea>
+</div>
+</div>
+</div>
+</section>
+<!-- Trip Preferences (Bento-style layout) -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-lg items-start">
+<div class="md:col-span-4">
+<h3 class="font-headline-sm text-primary mb-xs">Trip Preferences</h3>
+<p class="font-body-sm text-on-surface-variant">Tailor the concierge recommendations to your travel style.</p>
+</div>
+<div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Travel Pace -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-lg flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary mb-sm">speed</span>
+<h4 class="font-label-md text-primary mb-xs">Travel Pace</h4>
+<p class="font-body-sm text-on-surface-variant mb-md">Do you prefer jam-packed days or leisure walks?</p>
+</div>
+<div class="flex gap-xs">
+<span class="bg-primary text-on-primary px-sm py-xs rounded-full text-label-sm">Relaxed</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-xs rounded-full text-label-sm">Balanced</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-xs rounded-full text-label-sm">Active</span>
+</div>
+</div>
+<!-- Budget Profile -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+<span class="material-symbols-outlined text-primary mb-sm">payments</span>
+<h4 class="font-label-md text-primary mb-xs">Default Currency</h4>
+<select class="w-full bg-transparent border border-outline-variant rounded-lg px-md py-sm mt-sm font-body-md">
+<option>USD - US Dollar</option>
+<option>EUR - Euro</option>
+<option>GBP - British Pound</option>
+</select>
+</div>
+<!-- Dietary -->
+<div class="md:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+<h4 class="font-label-md text-primary mb-md">Dietary Requirements</h4>
+<div class="flex flex-wrap gap-sm">
+<label class="flex items-center gap-sm px-md py-sm border border-outline-variant rounded-full cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="font-label-md">Vegetarian</span>
+</label>
+<label class="flex items-center gap-sm px-md py-sm border border-outline-variant rounded-full cursor-pointer hover:bg-surface-container-low transition-colors">
+<input checked="" class="rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="font-label-md">Gluten-Free</span>
+</label>
+<label class="flex items-center gap-sm px-md py-sm border border-outline-variant rounded-full cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="font-label-md">Vegan</span>
+</label>
+<label class="flex items-center gap-sm px-md py-sm border border-outline-variant rounded-full cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="font-label-md">Dairy-Free</span>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Notifications -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-lg items-start">
+<div class="md:col-span-4">
+<h3 class="font-headline-sm text-primary mb-xs">Notification Settings</h3>
+<p class="font-body-sm text-on-surface-variant">Control when and how you want to be interrupted.</p>
+</div>
+<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="divide-y divide-outline-variant">
+<div class="p-lg flex items-center justify-between">
+<div>
+<h4 class="font-label-md text-primary">Trip Updates</h4>
+<p class="font-body-sm text-on-surface-variant">Flight delays, gate changes, and hotel check-ins.</p>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<div class="w-11 h-6 bg-primary rounded-full"></div>
+<div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform translate-x-5"></div>
+</div>
+</div>
+<div class="p-lg flex items-center justify-between">
+<div>
+<h4 class="font-label-md text-primary">Journaling Reminders</h4>
+<p class="font-body-sm text-on-surface-variant">End-of-day prompts to capture your memories.</p>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<div class="w-11 h-6 bg-surface-container-highest rounded-full"></div>
+<div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform"></div>
+</div>
+</div>
+<div class="p-lg flex items-center justify-between">
+<div>
+<h4 class="font-label-md text-primary">Budget Alerts</h4>
+<p class="font-body-sm text-on-surface-variant">Get notified when you approach 80% of your daily limit.</p>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<div class="w-11 h-6 bg-primary rounded-full"></div>
+<div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform translate-x-5"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Account Management -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-lg items-start">
+<div class="md:col-span-4">
+<h3 class="font-headline-sm text-primary mb-xs">Account Management</h3>
+<p class="font-body-sm text-on-surface-variant">Sensitive actions and data privacy controls.</p>
+</div>
+<div class="md:col-span-8 space-y-md">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex items-center justify-between">
+<div>
+<h4 class="font-label-md text-primary">Change Password</h4>
+<p class="font-body-sm text-on-surface-variant">Secure your account with a unique password.</p>
+</div>
+<button class="border border-outline-variant px-md py-sm rounded-lg font-label-md hover:bg-surface-container-low transition-colors">Update</button>
+</div>
+<div class="bg-error-container border border-error/20 rounded-xl p-lg flex items-center justify-between">
+<div>
+<h4 class="font-label-md text-on-error-container">Deactivate Account</h4>
+<p class="font-body-sm text-on-error-container/70">Permanently remove all your travel data and history.</p>
+</div>
+<button class="text-error font-label-md hover:underline">Deactivate</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Actions -->
+<div class="mt-xl pt-lg border-t border-outline-variant flex justify-end gap-md">
+<button class="px-lg py-sm font-label-md text-on-surface-variant hover:text-primary transition-colors">Discard Changes</button>
+<button class="bg-primary text-on-primary px-xl py-sm rounded-lg font-label-md active:scale-95 transition-all">Save Settings</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-4 bg-surface border-t border-outline-variant md:hidden shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm">Trips</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm">Budget</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold active:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm">Menu</span>
+</a>
+</nav>
+</div>
+</body></html>

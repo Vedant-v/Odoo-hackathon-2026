@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#1b1b1e",
+                    "primary-container": "#1b1b1e",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#54647a",
+                    "on-tertiary-fixed": "#01201a",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dadada",
+                    "on-primary-container": "#858387",
+                    "secondary-fixed": "#d3e4fe",
+                    "surface": "#f9f9f9",
+                    "surface-tint": "#5f5e61",
+                    "inverse-primary": "#c8c5ca",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-background": "#1a1c1c",
+                    "background": "#f9f9f9",
+                    "tertiary-container": "#01201a",
+                    "outline": "#77767b",
+                    "on-surface-variant": "#47464b",
+                    "tertiary": "#000000",
+                    "tertiary-fixed": "#c8eae0",
+                    "secondary-container": "#d0e1fb",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#c8c5ca",
+                    "primary-fixed": "#e4e1e6",
+                    "primary": "#000000",
+                    "error": "#ba1a1a",
+                    "on-surface": "#1a1c1c",
+                    "tertiary-fixed-dim": "#adcdc4",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#0b1c30",
+                    "secondary": "#505f76",
+                    "surface-variant": "#e2e2e2",
+                    "outline-variant": "#c8c5cb",
+                    "on-tertiary-container": "#6b8a82",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eeeeee",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "surface-container-low": "#f3f3f3",
+                    "on-tertiary-fixed-variant": "#2e4c45",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-primary-fixed-variant": "#47464a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "xl": "40px",
+                    "unit": "4px",
+                    "gutter": "20px",
+                    "margin-desktop": "64px",
+                    "max-width": "1200px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "headline-sm": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #f9f9f9; color: #1a1c1c; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e2e2; border-radius: 10px; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar (Desktop Shell) -->
+<aside class="hidden md:flex flex-col py-lg px-md h-full docked left-0 h-screen w-64 bg-surface border-r border-outline-variant fixed z-50">
+<div class="flex items-center gap-sm mb-xl">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-headline-sm" data-icon="explore_nearby">explore_nearby</span>
+</div>
+<div>
+<h1 class="font-display text-headline-md text-primary leading-none">Traveloop</h1>
+<p class="font-label-sm text-on-surface-variant">Quiet Concierge</p>
+</div>
+</div>
+<nav class="flex-1 space-y-xs overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="explore_nearby">explore_nearby</span>
+<span class="font-label-md">My Trips</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md">Discovery</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-md">Budget</span>
+</a>
+<!-- ACTIVE TAB -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-2 border-primary bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="checklist">checklist</span>
+<span class="font-label-md">Checklist</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-md">Journal</span>
+</a>
+</nav>
+<div class="mt-auto space-y-xs pt-lg border-t border-outline-variant">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar (Mobile/Tablet Shell) -->
+<header class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full sticky top-0 z-40 bg-surface/80 backdrop-blur-md md:hidden">
+<div class="flex items-center gap-sm">
+<span class="font-display text-headline-sm text-primary">Traveloop</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary" data-icon="notifications">notifications</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant">
+<img alt="User profile" class="w-full h-auto" data-alt="A clean, professional headshot of a person for a user profile avatar. The background is a soft, out-of-focus light grey, maintaining a high-key and minimalist aesthetic. The lighting is balanced and soft, emphasizing a modern and approachable look suitable for a premium travel application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA557yK7KEPOTPJrHbS4DOcoMFAlBi399EsxVOg6XeSGc_l_31vvUJkDVcR7le0x0aghSy8xTofhW6Ga8rARSQ4Dwuc-xu5cdhWFtnNaf-d-M0WnljNDNM1bv0koRbGtxc7L5YPztp6F9JZlntzzEdPIfJkoExM1ZSMgvFGGbH9WrVMdlwLVIwaCA_aFrnje_b37zfxDqi_6gEdg1HWKM3vR-XeJLLjK7Vu8YPY7E27NdEGP9h8FRz41UI8iFuO-FBgulSBo_xfbLhu"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen pb-20 md:pb-0">
+<!-- Dashboard Header -->
+<div class="max-w-[1200px] mx-auto w-full px-margin-mobile md:px-margin-desktop py-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-lg mb-xl">
+<div>
+<nav class="flex items-center gap-xs text-on-surface-variant mb-xs">
+<span class="font-label-sm">MY TRIPS</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="font-label-sm text-primary">ICELAND WINTER EXPEDITION</span>
+</nav>
+<h2 class="font-display text-display text-primary">Packing Checklist</h2>
+</div>
+<div class="flex items-center gap-md">
+<button class="px-lg py-sm border border-primary rounded-lg font-label-md hover:bg-surface-container-low transition-all">
+                        Share Itinerary
+                    </button>
+<button class="px-lg py-sm bg-primary text-white rounded-lg font-label-md hover:opacity-90 transition-all flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                        Create New Trip
+                    </button>
+</div>
+</div>
+<!-- Dashboard Layout: Asymmetric Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Center Section: Checklist Items (8 columns) -->
+<div class="lg:col-span-8 space-y-xl">
+<!-- Progress Bar -->
+<div class="bg-surface-container-low rounded-xl p-lg border border-outline-variant">
+<div class="flex justify-between items-center mb-sm">
+<span class="font-label-md text-primary">Preparation Progress</span>
+<span class="font-label-md text-primary">12 / 24 items</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-1/2 h-full bg-primary"></div>
+</div>
+</div>
+<!-- Essentials Section -->
+<section>
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary" data-icon="verified">verified</span>
+<h3 class="font-headline-sm text-primary">Essentials</h3>
+</div>
+<div class="space-y-xs">
+<label class="group flex items-center gap-md p-md hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer border border-transparent hover:border-outline-variant">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<div class="flex-1">
+<p class="font-body-md text-primary line-through opacity-50">Passport and Travel Visas</p>
+<p class="font-body-sm text-on-surface-variant">Check expiration dates (min 6 months)</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="more_vert">more_vert</span>
+</label>
+<label class="group flex items-center gap-md p-md hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<div class="flex-1">
+<p class="font-body-md text-primary line-through opacity-50">Booking Confirmations</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="more_vert">more_vert</span>
+</label>
+<label class="group flex items-center gap-md p-md hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<div class="flex-1">
+<p class="font-body-md text-primary">Travel Insurance Document</p>
+<p class="font-body-sm text-on-surface-variant">Printed copy in day-pack</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="more_vert">more_vert</span>
+</label>
+<!-- Inline Add Item -->
+<div class="flex items-center gap-md p-md border-t border-outline-variant mt-sm">
+<span class="material-symbols-outlined text-outline-variant" data-icon="add">add</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-primary placeholder:text-outline-variant p-0" placeholder="Add an essential item..." type="text"/>
+</div>
+</div>
+</section>
+<!-- Clothing Section -->
+<section>
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary" data-icon="checkroom">checkroom</span>
+<h3 class="font-headline-sm text-primary">Clothing</h3>
+</div>
+<div class="space-y-xs">
+<label class="group flex items-center gap-md p-md hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<div class="flex-1">
+<p class="font-body-md text-primary">Merino Wool Base Layers</p>
+<p class="font-body-sm text-on-surface-variant">Top and bottom (x2 sets)</p>
+</div>
+<div class="flex gap-xs">
+<span class="px-sm py-xs bg-surface-container-high rounded text-label-sm text-on-surface-variant">Heavy</span>
+</div>
+</label>
+<label class="group flex items-center gap-md p-md hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<div class="flex-1">
+<p class="font-body-md text-primary">Waterproof Shell Jacket</p>
+</div>
+<div class="flex gap-xs">
+<span class="px-sm py-xs bg-surface-container-high rounded text-label-sm text-on-surface-variant">Outdoor</span>
+</div>
+</label>
+<label class="group flex items-center gap-md p-md hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+<div class="flex-1">
+<p class="font-body-md text-primary line-through opacity-50">Thermal Gloves</p>
+</div>
+</label>
+<div class="flex items-center gap-md p-md border-t border-outline-variant mt-sm">
+<span class="material-symbols-outlined text-outline-variant" data-icon="add">add</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-primary placeholder:text-outline-variant p-0" placeholder="Add clothing item..." type="text"/>
+</div>
+</div>
+</section>
+<!-- Gear Section (Bento style card) -->
+<section>
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary" data-icon="camera_enhance">camera_enhance</span>
+<h3 class="font-headline-sm text-primary">Gear</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="p-lg bg-surface-container-low rounded-xl border border-outline-variant">
+<div class="flex justify-between mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="power">power</span>
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+</div>
+<h4 class="font-label-md text-primary mb-xs">Universal Adapter</h4>
+<p class="font-body-sm text-on-surface-variant">Type G / European standard</p>
+</div>
+<div class="p-lg border border-outline-variant rounded-xl hover:bg-surface-container-low transition-colors">
+<div class="flex justify-between mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="flashlight_on">flashlight_on</span>
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-0" type="checkbox"/>
+</div>
+<h4 class="font-label-md text-primary mb-xs">Headlamp</h4>
+<p class="font-body-sm text-on-surface-variant">Extra batteries included</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar: Templates (4 columns) -->
+<div class="lg:col-span-4 space-y-xl">
+<div class="sticky top-24">
+<div class="mb-lg">
+<h3 class="font-headline-sm text-primary mb-sm">Reusable Templates</h3>
+<p class="font-body-sm text-on-surface-variant">Quickly add categories from your saved lists.</p>
+</div>
+<div class="space-y-md">
+<div class="group p-md border border-outline-variant rounded-xl hover:border-primary transition-all cursor-pointer">
+<div class="flex items-center gap-md mb-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="snowing">snowing</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-primary">Winter Expedition</h4>
+<p class="font-body-sm text-on-surface-variant">14 items</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary" data-icon="add_circle">add_circle</span>
+</div>
+</div>
+<div class="group p-md border border-outline-variant rounded-xl hover:border-primary transition-all cursor-pointer">
+<div class="flex items-center gap-md mb-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="beach_access">beach_access</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-primary">Tropical Escape</h4>
+<p class="font-body-sm text-on-surface-variant">18 items</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary" data-icon="add_circle">add_circle</span>
+</div>
+</div>
+<div class="group p-md border border-outline-variant rounded-xl hover:border-primary transition-all cursor-pointer">
+<div class="flex items-center gap-md mb-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="laptop_mac">laptop_mac</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-primary">Digital Nomad</h4>
+<p class="font-body-sm text-on-surface-variant">9 items</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary" data-icon="add_circle">add_circle</span>
+</div>
+</div>
+</div>
+<!-- Mini Map Preview -->
+<div class="mt-xl rounded-xl overflow-hidden relative h-48 border border-outline-variant">
+<img alt="Iceland landscape" class="w-full h-full object-cover" data-alt="A cinematic, wide-angle shot of a majestic Icelandic mountain landscape during the blue hour. The scene features snow-covered peaks, a winding black sand river, and a sense of vast, quiet isolation. The lighting is cool-toned and ethereal, perfectly matching the minimalist and premium travel aesthetic of the application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsfGRHCHQiHNMLYnvmukxbErvFoHHGJwOlMztC_Cbu0p4PtHt6F9JQ5vRNk6DkBaNQp-btbIYnbk1kMpvFbpBn_ugr6tT3pXCVRQXA0teBWa5FRzsEl96sKyv8EdXIHDVlcg0h9e4E0kH-tuImH-aiPW2mmD7AVNGT6o9dGBnvN6bVhZn1pnJzGVyuhLcyfg-GXwZWoLABllaTYHx9lbjtcDD5JBmfOPRu-FPpKpi7-FodWTRpRSKpXzg8aL77tl4MfR7MjjnbaW4N"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-md">
+<div class="flex items-center gap-xs text-white">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+<span class="font-label-sm" data-location="Iceland">Reykjavík, Iceland</span>
+</div>
+<p class="text-white/80 font-body-sm">Departure in 14 days</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Shell) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-4 md:hidden bg-surface rounded-t-xl shadow-sm border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-label-sm">Trips</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-sm">Discover</span>
+</a>
+<!-- ACTIVE -->
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="checklist" data-weight="fill" style="font-variation-settings: 'FILL' 1;">checklist</span>
+<span class="font-label-sm">Checklist</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+<span class="font-label-sm">Menu</span>
+</a>
+</nav>
+<!-- FAB (Contextual) -->
+<button class="fixed bottom-20 right-6 md:bottom-10 md:right-10 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center z-40 md:hidden active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]" data-icon="add">add</span>
+</button>
+</body></html>

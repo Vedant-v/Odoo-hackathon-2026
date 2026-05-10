@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#1b1b1e",
+                        "primary-container": "#1b1b1e",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed": "#01201a",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dadada",
+                        "on-primary-container": "#858387",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface": "#f9f9f9",
+                        "surface-tint": "#5f5e61",
+                        "inverse-primary": "#c8c5ca",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1a1c1c",
+                        "background": "#f9f9f9",
+                        "tertiary-container": "#01201a",
+                        "outline": "#77767b",
+                        "on-surface-variant": "#47464b",
+                        "tertiary": "#000000",
+                        "tertiary-fixed": "#c8eae0",
+                        "secondary-container": "#d0e1fb",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-high": "#e8e8e8",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#c8c5ca",
+                        "primary-fixed": "#e4e1e6",
+                        "primary": "#000000",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1a1c1c",
+                        "tertiary-fixed-dim": "#adcdc4",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "secondary": "#505f76",
+                        "surface-variant": "#e2e2e2",
+                        "outline-variant": "#c8c5cb",
+                        "on-tertiary-container": "#6b8a82",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eeeeee",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-container-low": "#f3f3f3",
+                        "on-tertiary-fixed-variant": "#2e4c45",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-primary-fixed-variant": "#47464a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "unit": "4px",
+                        "gutter": "20px",
+                        "margin-desktop": "64px",
+                        "max-width": "1200px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .prose-editor:focus { outline: none; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface flex min-h-screen">
+<!-- Sidebar Navigation Shell -->
+<aside class="hidden md:flex flex-col py-lg px-md h-full docked left-0 h-screen w-64 border-r border-outline-variant bg-surface overflow-y-auto">
+<div class="flex items-center gap-md mb-xl">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-headline-sm">menu_book</span>
+</div>
+<div>
+<h1 class="font-display text-headline-sm text-primary">Traveloop</h1>
+<p class="font-label-sm text-on-surface-variant">Quiet Concierge</p>
+</div>
+</div>
+<nav class="space-y-xs flex-1">
+<button class="w-full flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant group">
+<span class="material-symbols-outlined text-md">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</button>
+<button class="w-full flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-md">explore_nearby</span>
+<span class="font-label-md">My Trips</span>
+</button>
+<button class="w-full flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-2 border-primary bg-surface-container-low">
+<span class="material-symbols-outlined text-md">menu_book</span>
+<span class="font-label-md">Journal</span>
+</button>
+<button class="w-full flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-md">payments</span>
+<span class="font-label-md">Budget</span>
+</button>
+</nav>
+<div class="mt-xl pt-lg border-t border-outline-variant">
+<p class="px-md font-label-sm text-on-surface-variant mb-md">TRIP DAYS</p>
+<div class="space-y-xs">
+<button class="w-full text-left px-md py-xs rounded-lg bg-surface-container-highest text-primary font-bold font-label-md">Day 1: Arrival in Kyoto</button>
+<button class="w-full text-left px-md py-xs rounded-lg hover:bg-surface-container-low text-on-surface-variant font-label-md">Day 2: Arashiyama Morning</button>
+<button class="w-full text-left px-md py-xs rounded-lg hover:bg-surface-container-low text-on-surface-variant font-label-md">Day 3: Gion District</button>
+<button class="w-full text-left px-md py-xs rounded-lg hover:bg-surface-container-low text-on-surface-variant font-label-md">Day 4: Nara Day Trip</button>
+</div>
+</div>
+<div class="mt-auto space-y-xs">
+<button class="w-full flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-md">account_circle</span>
+<span class="font-label-md">Profile</span>
+</button>
+<button class="w-full flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-md">settings</span>
+<span class="font-label-md">Settings</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden bg-surface">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-primary">Kyoto: Autumn Zen</span>
+<span class="px-sm py-xs bg-surface-container text-on-surface-variant text-label-sm rounded-full">DRAFT</span>
+</div>
+<div class="flex items-center gap-lg">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<button class="font-label-md text-primary border border-primary px-lg py-sm rounded-lg hover:bg-surface-container-low transition-colors">Share Itinerary</button>
+<button class="font-label-md bg-primary text-on-primary px-lg py-sm rounded-lg hover:opacity-90 transition-all">Create New Trip</button>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden">
+<!-- Focused Writing Area -->
+<section class="flex-1 overflow-y-auto px-xl md:px-margin-desktop py-xl hide-scrollbar">
+<div class="max-w-[720px] mx-auto space-y-xl">
+<div class="space-y-sm">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-widest">OCTOBER 14, 2024</span>
+<h2 class="font-display text-display text-primary border-none outline-none focus:ring-0 w-full bg-transparent" contenteditable="true">Day 1: Arrival in Kyoto</h2>
+</div>
+<!-- Editor Mockup (Notion Style) -->
+<div class="prose-editor space-y-lg text-body-lg text-on-surface leading-relaxed">
+<p class="focus:outline-none" contenteditable="true">The train from Tokyo was remarkably quiet. Stepping onto the platform at Kyoto Station, the air felt different—thinner, cooler, and carrying the faint scent of incense and cedar. We dropped our bags at the Machiya near Higashiyama and set out immediately.</p>
+<div class="p-lg bg-surface-container-low rounded-lg border-l-4 border-primary">
+<p class="italic text-on-surface-variant">"In the heart of Kyoto, silence isn't the absence of sound, but the presence of focus."</p>
+</div>
+<h3 class="font-headline-md text-primary pt-md">Higashiyama Sunset</h3>
+<p class="focus:outline-none" contenteditable="true">Walking up Sannenzaka at dusk was like stepping back in time. The wooden storefronts started lighting their paper lanterns. We found a small tea house that served Matcha from Uji. The bitterness was perfectly balanced by the wagashi.</p>
+<ul class="list-disc list-inside space-y-sm text-on-surface-variant ml-md">
+<li>Check-in at the traditional Ryokan</li>
+<li>Evening stroll through the Yasaka Shrine</li>
+<li>Dinner: Kaiseki meal at Gion Nanba</li>
+</ul>
+<p class="focus:outline-none text-on-surface-variant/40" contenteditable="true">Type '/' for commands...</p>
+</div>
+</div>
+</section>
+<!-- Media/Context Sidebar -->
+<aside class="hidden lg:flex w-80 flex-col border-l border-outline-variant p-lg space-y-xl overflow-y-auto bg-surface-container-lowest">
+<div class="space-y-md">
+<div class="flex justify-between items-center">
+<h4 class="font-label-md text-primary font-bold">ATTACHED PHOTOS</h4>
+<button class="material-symbols-outlined text-on-surface-variant text-md">add_a_photo</button>
+</div>
+<div class="grid grid-cols-1 gap-md">
+<div class="group relative overflow-hidden rounded-xl border border-outline-variant">
+<img class="w-full h-40 object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="A serene landscape photo of a traditional Japanese pagoda in Kyoto surrounded by vibrant autumn maple leaves in shades of deep red and orange. The soft morning light creates a peaceful, meditative atmosphere with high-key lighting that emphasizes a clean, minimal aesthetic. The composition is balanced and elegant, reflecting a high-end travel journal style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD96Y4PP6xAfZuHRYGPLRrzf2WgcIAGvZu17y9Ny8sRCwfo8fcxHynaq-sgg7TXB_H8uGwP7CYgukCn4Mahs7VH_UNhhT0BaF2DDupV83SZKl66qBSglxdF_4GEz4pmr7Y86PW0482A8TmsgxRRjF6vAMezfZizoLKkbzFx16DHJAJ7-igUrWGblvT47Hi9f398np9FaFpQTcsp3XQyViuZPNxqf1VjaMVvyGRYQn8z9hqDcmExHo3LzsdSqsetNweLL7ZLMaykBLRI"/>
+</div>
+<div class="group relative overflow-hidden rounded-xl border border-outline-variant">
+<img class="w-full h-40 object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="Close-up detail of a minimalist Japanese Zen garden with perfectly raked white sand and a single weathered stone. The lighting is diffused and soft, highlighting the textures of the sand and rock. The aesthetic is monochrome and essentialist, focusing on tranquility and spatial rhythm. The image feels premium and archival, suitable for a sophisticated travel documentation interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeFMgZONiXAiKmK2Uj5t27tei0nCpzQJWEcKGE-qXe6Wlq6vzrg5IiYfpZX_xjQy2Fv2SuhhA6RxZEt6iyNJnAlERD_qfZKHt6okep6cjjIiK8gmJBOLg73ELZhd__izPwB8WJFz1ciCznV0jFeLu2_UZ8ch5mUrKy8okIv6hpjOFAeRFbOeRbWejCOq2hwsgUavKS5Zq4CBonhtKQfFteGX08VOWdNqxL7bV5YJFvadI2LKz1oV5N_rM8F-_qga3IvY4khI2xndWq"/>
+</div>
+</div>
+</div>
+<div class="space-y-md">
+<h4 class="font-label-md text-primary font-bold">LOCATION</h4>
+<div class="h-48 w-full rounded-xl border border-outline-variant overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A stylized, minimalist map view of Kyoto, Japan, rendered in a clean light-mode palette of whites and soft greys. The map emphasizes major landmarks like the Kamo River and Gion district with subtle, elegant iconography. The aesthetic is inspired by professional architecture diagrams, maintaining a high-discerning, functional layout with plenty of negative space." data-location="Kyoto, Japan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVv8atTVRQwbpZOYaz9-BxGhsfvc_LtiLXYtCdBIi3UJUyFGvImFU9zxJQ-ew5uYwcU58DcwDfw6WcJdAfqce-f5Y0hhH8k2GusjFZVdIfzrJSoL7qE5aP6aL2tIKC1843srvciV4nu08-YUpWb_VMQ81BiGepBqMN16W3RB3-pBh42MlLnwDB94YCzHUjOK5vdTZeuJuenv45x9N3TygFFwutDipUmXdBG15_LegpKOPzBiGx4nwQNQrAaNLetG0rKgWm0C-crRqA"/>
+<div class="absolute inset-0 bg-primary/5"></div>
+<div class="absolute bottom-md left-md bg-surface px-md py-xs rounded-full shadow-sm border border-outline-variant">
+<span class="text-label-sm font-bold text-primary">Kyoto, Japan</span>
+</div>
+</div>
+</div>
+<div class="space-y-md">
+<h4 class="font-label-md text-primary font-bold">WEATHER &amp; LOGS</h4>
+<div class="p-md rounded-xl border border-outline-variant space-y-sm">
+<div class="flex justify-between items-center text-label-md">
+<span class="text-on-surface-variant">Condition</span>
+<span class="text-primary font-bold">Clear, 18°C</span>
+</div>
+<div class="flex justify-between items-center text-label-md">
+<span class="text-on-surface-variant">Steps</span>
+<span class="text-primary font-bold">14,204</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-4 md:hidden bg-surface dark:bg-surface-container-low border-t border-outline-variant rounded-t-xl shadow-sm">
+<button class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm text-label-sm">Trips</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-sm text-label-sm">Journal</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Budget</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="font-label-sm text-label-sm">Menu</span>
+</button>
+</nav>
+<!-- Floating Action Button - Contextual -->
+<button class="fixed bottom-24 right-md md:bottom-lg md:right-lg w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-95 transition-all z-50 md:hidden lg:flex">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</body></html>
